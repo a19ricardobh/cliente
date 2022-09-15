@@ -17,3 +17,23 @@
 *                   - ¿Qué pasaría en la division si numero2=0 ?
 *
 ***************************************************************************************************************/
+let n1=prompt("Escriba un primer numero")
+let n2=prompt("Escriba un segundo numero")
+n1=parseInt(n1)
+n2=parseInt(n2)
+
+let suma=n1+n2
+let resta=n1-n2
+let por=n1*n2
+
+if (n2=0){
+    alert("No se puede dividir por cero")
+}else{
+    let div=n1/n2
+}
+
+alert(`La suma de numero1 y numero2 es: ${suma} 
+    * La resta de numero1 y numero2 es: ${resta} 
+    * El producto de numero1 y numero2 es: ${por} 
+    * La division de numero1 entre numero2 es: ${div.toFixed(2)}`)
+

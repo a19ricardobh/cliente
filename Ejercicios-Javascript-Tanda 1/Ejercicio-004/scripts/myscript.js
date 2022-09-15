@@ -12,3 +12,11 @@
 *
 *
 ***************************************************************************************************************/
+let nome=prompt("Escriba su nombre")
+let edad=prompt("Escriba su edad")
+
+if ((!isNaN(parseFloat(nome))) || (isNaN(parseFloat(edad)))) {
+    console.log("los datos introducidos no son validos")    
+}else{
+    alert(`Tu nombre es ${nome} y tienes ${edad} años`)
+}

@@ -11,3 +11,9 @@
 *
 *
 ***************************************************************************************************************/
+let nome=prompt("Escriba su nombre")
+if (!isNaN(parseFloat(nome))) {
+    console.log("no es un nombre valido")    
+}else{
+    alert(`Bienvenido a mi pagina, ${nome}`)
+}
