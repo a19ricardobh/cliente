@@ -15,4 +15,18 @@
 *                   - La edad no puede ser superior a 120 (indicaremos el error)
 *
 ***************************************************************************************************************/
+function leerDatos(mensaje){
+    let i=true
+    let n=prompt(mensaje)
+    do{
+        if (isNaN(n)) {
+            n=prompt(mensaje)
+        }else {
+            i=false
+            return n
+        }
+    }while(i)
+}
 
+let edad=leerDatos("Pon tu edad")
+console.log(Number.isInteger(edad))

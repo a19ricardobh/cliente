@@ -16,3 +16,21 @@
 *   Notas: Emplear una funcion con un parámetro
 *
 ***************************************************************************************************************/
+function conver(t) {
+    return ((5/9)*(t-32)).toFixed(2)
+}
+
+let temp=prompt("Temperatura en grados Farenheit:")
+
+
+let c=conver(temp)
+
+if (c>=25){
+    alert(`Son ${c} grados y hace bastante calor, ve por la sombra `)
+}else if (c<25 && c>=10){
+    alert(`Son ${c} grados, temperatura agradable `)
+}else if (c<10 && c>=0){
+    alert(`Son ${c} grados, hace frío `)
+}else if(c<0){
+    alert(`Son ${c} grados, bajo cero, cuidado `)
+}
