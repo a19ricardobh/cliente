@@ -21,12 +21,41 @@ function leerDatos(mensaje){
     do{
         if (isNaN(n)) {
             n=prompt(mensaje)
-        }else {
+        }else{
             i=false
-            return n
+            return parseInt(n)
         }
     }while(i)
 }
 
 let edad=leerDatos("Pon tu edad")
-console.log(Number.isInteger(edad))
+//console.log(Number.isInteger(parseFloat(edad)))
+/* con if
+if (edad<=0 || edad>120){
+    alert("la edad debe estar entre 0 y 120")
+}else{
+    if (edad<30){
+        alert("Ponte a trabajar !!!")
+    }else if (edad>=30 && edad<=64){
+        alert("Que ganas tengo de jubilarme !!!")
+    }else if(edad>=65){
+        alert("Descansa un poco !!!")
+    }
+} */
+// con switch
+switch(true) {
+    case (edad<=0):
+        alert("")
+        break
+    case (edad<30):
+        alert("Ponte a trabajar !!!")
+        break
+    case  (edad>=30 && edad<=64):
+        alert("Que ganas tengo de jubilarme !!!")
+        break
+    case (edad>=65):
+        alert("Descansa un poco !!!")
+        break
+    case (edad>=120):
+        alert("")
+}
