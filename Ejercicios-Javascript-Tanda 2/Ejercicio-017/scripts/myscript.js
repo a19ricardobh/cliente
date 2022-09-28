@@ -10,3 +10,23 @@
 *
 *
 ***************************************************************************************************************/
+class Persona {
+    constructor(nombre, edad) {
+      this.nombre = nombre;
+      this.edad = edad;
+    }
+    mayorEdad(){
+        if (this.edad>=18){
+            return true
+        }else{
+            return false
+        }   
+    }
+  }
+
+  let juan = new Persona("Juan",25)
+  let pedro = new Persona("Peter",12)
+  console.log(juan)
+  console.log(juan.mayorEdad())
+  console.log(pedro)
+  console.log(pedro.mayorEdad())

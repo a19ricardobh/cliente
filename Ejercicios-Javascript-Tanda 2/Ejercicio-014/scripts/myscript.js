@@ -23,11 +23,15 @@ function leerDatos(mensaje){
     }while(i)
 }
 
-while(true){
+let i=true
+while(i){
+    let texto1 ="<p>"
     let texto=leerDatos("Introduce una cadena. Para salir escribe cancelar")
-    document.write(texto)
+    texto1+=texto+"</p>"
+    //console.log(texto1)
+    document.querySelector("body").innerHTML=texto1
     if (texto=="cancelar"){
-        break
+        i=false
     }
+    //document.querySelector("body").innerHTML=texto1
 } 
-    

@@ -17,3 +17,35 @@
 *          * Declararemos y emplearemos funciones
 *
 ***************************************************************************************************************/
+function leerDatos(mensaje){
+    let i=true
+    let n=prompt(mensaje)
+    do{
+        if (isNaN(n) || (n>9 || n<1)) {
+            n=prompt(mensaje)
+        }else{
+            i=false
+            return parseInt(n)
+        }
+    }while(i)
+}
+
+let num=leerDatos("Escribe un numero entre 1 y 9")
+
+function sacarPorConsola() {
+    for (let i=1;i<=9;i++) 
+        console.log(`${i} x ${num} = ${i*num}`)
+}
+
+function sacarPorHTML() {
+    const $contenedor=document.getElementById("contenedor")
+ 
+    let resultado="<table>"
+    for (let i=1;i<=9;i++) 
+        resultado+=`<tr><td>${i}</td><td> x </td><td>${num}</td> <td>=</td><td> ${i*num}</td></tr>`
+    resultado+="</table>"
+    $contenedor.innerHTML=resultado
+}
+
+sacarPorConsola()
+sacarPorHTML()

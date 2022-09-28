@@ -16,3 +16,28 @@
 *          - ¿Cómo "unir" los elementos de un array y convertirlos en una cadena?
 *
 ***************************************************************************************************************/
+function leerDatos(mensaje){
+    let i=true
+    let n=prompt(mensaje)
+    do{
+        if (isNaN(n)) {
+            n=prompt(mensaje)
+        }else {
+            i=false
+            return parseInt(n)
+        }
+    }while(i)
+}
+
+let num=leerDatos("Escribe un numero entero")
+
+const vector=[]
+for (let i=1;i<=num;i++) {
+    if (i%2==0){
+        vector.push(i)
+    }
+}
+console.log(vector.join(", "))
+
+
+
