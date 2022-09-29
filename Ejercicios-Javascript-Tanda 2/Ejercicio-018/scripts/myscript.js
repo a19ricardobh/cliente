@@ -66,3 +66,11 @@ console.log(`${m} personas son mayores de edad`)
 console.log(`${(medMay+medMen)/personas.length} promedio de todas las edades`)
 console.log(`${(medMay)/m} promedio de mayores de edad`)
 console.log(`${(medMen)/n} promedio de menores de edad`)
+
+//Otra forma
+/* const personas=Array.from({length:20},()=>{
+    return{ nombre:nombres[ramdom(0,nombres.length-1)],
+            edad:ramdom(1,100)
+    }
+})
+*/
