@@ -49,27 +49,58 @@ const contactos = [
     }
 ];
 
-
-function buscarContacto(nombre, prop) {
+/* function buscarContacto(nombre, prop) {
   const buscado=[]
   contactos.forEach(element => {
     if (element.nombre==nombre){
-        buscado.push(element)
+        buscado.push(element.nombre)
+        buscado.push(element.apellidos)
+        buscado.push(element.telefono)
+        buscado.push(element.likes)
     }
   })
+  
   if (buscado.length==0){
     return "No existe ese contacto"
   }else{
-    console.log(buscado[0].likes)
-    
+    switch (prop) {
+      case "likes":
+        return buscado[3]
+        break;
+      case "apellidos":
+          return buscado[1]
+          break;
+      case "telefono":
+        return buscado[2]
+        break;
+      default:
+        return "No existe esa propiedad"
+        break;
+    }
   }
 
+} */
+
+function buscarContacto2(nombre, prop)  {
+  const contacto=contactos.filter(el=>el.nombre===nombre)
+  if (contacto.length) {
+     if (contacto[0][prop]==undefined)
+        return "No existe tal propiedad"
+     else
+        return contacto[0][prop]
+  } else 
+     return "No existe el contacto"
 }
 
-buscarContacto("Akira", "likes");
-/*buscarContacto("Kristian", "lastName") 
-buscarContacto("Sherlock", "likes") 
-buscarContacto("Harry", "likes") 
-buscarContacto("Bob", "number") 
-buscarContacto("Bob", "potato") 
-buscarContacto("Akira", "address") */
+function buscarContacto(nombre, prop)  {
+  const contacto=contactos.filter(el=>el.nombre===nombre)
+  return (contacto.length)?(contacto[0][prop]==undefined)?"No existe tal propiedad":contacto[0][prop]:"No existe el contacto"
+}
+
+console.log(buscarContacto("Akira", "likes"))
+console.log(buscarContacto("Kristian", "apellidos"))
+console.log(buscarContacto("Sherlock", "likes")) 
+console.log(buscarContacto("Harry", "likes"))
+console.log(buscarContacto("Bob", "number"))
+console.log(buscarContacto("Bob", "potato"))
+console.log(buscarContacto("Akira", "address"))

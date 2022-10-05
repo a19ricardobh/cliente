@@ -17,3 +17,39 @@
 *
 *
 ***************************************************************************************************************/
+function leerDatos(mensaje){
+    let i=true
+    let n=prompt(mensaje)
+    do{
+        if (isNaN(n)) {
+            n=prompt(mensaje)
+        }else{
+            i=false
+            return parseInt(n)
+        }
+    }while(i)
+}
+
+let num=leerDatos("Escribe porcentaje de acierto")
+
+function notas(num){
+    switch (true) {
+        case num<60:
+            return "El examen se cualifica con un F"
+            break;
+        case num<70:
+            return "El examen se cualifica con un D"
+            break;
+        case num<80:
+            return "El examen se cualifica con un C"
+            break;
+        case num<90:
+            return "El examen se cualifica con un B"
+            break;
+        default:
+            return "El examen se cualifica con un A"
+            break;
+    }
+}
+
+console.log(notas(num))
