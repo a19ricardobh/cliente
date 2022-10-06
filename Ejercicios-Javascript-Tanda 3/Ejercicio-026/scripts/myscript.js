@@ -16,3 +16,24 @@
 *
 *
 ***************************************************************************************************************/
+function leerDatos(mensaje){
+    let i=true
+    let n=prompt(mensaje)
+    do{
+        if (isNaN(n)) {
+            n=prompt(mensaje)
+        }else{
+            i=false
+            return parseInt(n)
+        }
+    }while(i)
+}
+
+let num=leerDatos("Escribe un numero")
+
+let i = 0;
+
+do {
+  i = i + 1
+  console.log(i.toString().concat(' ').repeat(i))
+} while (i < num)

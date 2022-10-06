@@ -11,3 +11,35 @@
 *
 *
 ***************************************************************************************************************/
+function leerDatos(mensaje){
+    let i=true
+    let n=prompt(mensaje)
+    do{
+        if (isNaN(n)) {
+            n=prompt(mensaje)
+        }else{
+            i=false
+            return parseInt(n)
+        }
+    }while(i)
+}
+
+let nfilas=leerDatos("Escribe numero filas")
+let ncols=leerDatos("Escribe numero columnas")
+
+function sacarPorHTML() {
+    const $contenedor=document.getElementById("contenedor")
+ 
+    let resultado="<table>"
+    for (let i=1;i<=nfilas;i++){
+        resultado+="<tr>"
+        for(let j=1;j<=ncols;j++){
+            resultado+=`<td>${i*j}</td>`
+        }
+        resultado+="</tr>"
+    } 
+    resultado+="</table>"
+    $contenedor.innerHTML=resultado
+}
+
+sacarPorHTML()

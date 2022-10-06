@@ -16,3 +16,24 @@
 *             El problema 306 está en el volumen 3
 *
 ***************************************************************************************************************/
+function leerDatos(mensaje){
+    let i=true
+    let n=prompt(mensaje)
+    do{
+        if (isNaN(n)) {
+            n=prompt(mensaje)
+        }else{
+            i=false
+            return parseInt(n)
+        }
+    }while(i)
+}
+
+let num=leerDatos("Escribe un numero")
+
+function volumen(n){
+    //const s=n.toString()
+    return n.toString().slice(0,(n.toString().length-2))
+}
+
+console.log(`El problema ${num} está en el volumen ${volumen(num)}`)

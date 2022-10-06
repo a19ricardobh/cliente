@@ -12,3 +12,31 @@
 *
 *
 ***************************************************************************************************************/
+
+const sudoku=[[1,2,3],[4,5,6],[7,8,9]]
+
+/* function isSudoku(array){
+    let i=1
+    const encontrados=[]
+    let rdo=true
+    while (i<=9) {
+        for (let s = 0; s < 3; s++) 
+            if ((array[s].includes(i) ))
+                encontrados.push(i)
+        i++
+    }
+    
+    let j=1
+    while (j<=9) {
+        if (!(encontrados.includes(j)))
+            return false
+        j++   
+    }
+    return rdo
+}
+
+console.log(isSudoku(sudoku)) */
+
+let resultado=[]
+for (i=0;i<sudoku.length;i++) 
+    resultado=[...resultado, ...sudoku[i]]
