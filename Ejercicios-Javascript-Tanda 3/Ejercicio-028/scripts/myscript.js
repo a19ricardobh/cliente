@@ -40,3 +40,4 @@ console.log(isSudoku(sudoku)) */
 let resultado=[]
 for (i=0;i<sudoku.length;i++) 
     resultado=[...resultado, ...sudoku[i]]
+

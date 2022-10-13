@@ -75,6 +75,10 @@ let arr1=rellenaArray(lg)
 let arr2=rellenaArray(lg)
 console.log(arr1)
 console.log(arr2)
+
+//elementosComunes=arr1.filter(el=>arr2.includes(el))
+//elementosNoComunes=arr1.filter(el=>!arr2.includes(el))
+
 console.log(`Los arrays tienen ${comunes(arr1,arr2).length} elementos comunes: ${comunes(arr1,arr2).join(", ")}`)
 console.log(`Elementos del primer array no presentes en el segundo array: ${primeroNoSeg(arr1,arr2).join(", ")}`)
 console.log(`Elementos del segundo array no presentes en el primer array: ${segundoNoPrim(arr1,arr2).join(", ")}`)

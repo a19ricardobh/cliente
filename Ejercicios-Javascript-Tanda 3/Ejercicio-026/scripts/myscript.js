@@ -32,8 +32,9 @@ function leerDatos(mensaje){
 let num=leerDatos("Escribe un numero")
 
 let i = 0;
-
+let salida=""
 do {
   i = i + 1
-  console.log(i.toString().concat(' ').repeat(i))
+  salida+=i.toString().concat(' ').repeat(i)+"\n"
 } while (i < num)
+console.log(salida)

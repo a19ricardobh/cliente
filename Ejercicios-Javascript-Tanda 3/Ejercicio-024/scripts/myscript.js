@@ -28,6 +28,7 @@ let num=leerDatos("Escribe un numero")
 function isAutomorfico(n){
     let m=(n*n).toString()
     return m.slice(-n.toString().length)==n.toString()
+    //return m.endsWith(n.toString())
 }
 
 console.log(isAutomorfico(num)?"Es automorfico":"No es automorfico")
