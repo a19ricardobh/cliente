@@ -1,0 +1,35 @@
+*{
+    box-sizing:border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+#contExt{
+    width: 50vw;
+    height: 50vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25vw;
+    background-color: brown;
+    border-radius: 20px;
+}
+#contInt{
+    
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 25vw;
+    height: 25vh;
+    
+    background-color: rgb(42, 151, 165);
+    border-radius: 20px;
+}
+a{
+    display: block;
+    margin: 10px;
+    background-color: beige;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 10px;
+}
