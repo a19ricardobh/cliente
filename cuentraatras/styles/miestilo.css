@@ -1,0 +1,85 @@
+/* Estilos generales*/
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+ 
+*,
+::after,
+::before {
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box; /*   */
+}
+:root{
+    font-size: 14px;
+    /*variables*/
+    --ff-primaria: 'Roboto',sans-serif;
+    --ff-secundaria: "Open Sans", sans-serif;
+    --color-fondo-pagina: hsl(210,36%,96%);
+    --color-letra-1: hsl(209,61%,16%);
+    --color-letra-2: hsl(210,22%,49%);
+    --color-letra-3: #222;
+    --color-letra-4: #fff;
+    --spacing: .1rem;
+    --radius: .25rem;
+}
+body {
+    font-family: var(--ff-secundaria);
+    background-color: var(--color-fondo-pagina);
+    color: var(--color-letra-1);
+    line-height: 1.5;
+    font-size: .875rem; /* rem relativo al root, parte del base - em relativo al contenedor */
+}
+h1{
+    font-size: 3rem;
+}
+h1,h2,h3,h4{
+    letter-spacing: var(--spacing);
+    text-transform: capitalize; /* transforma el texto:la primera letra en mayusculas*/
+    line-height: 1.5; /*no tiene unidades, es la unica*/
+    margin-bottom: .75rem;
+    font-family: 'Roboto',sans-serif;
+}
+/*Estilos del main*/
+
+main{
+    margin: 0 auto; /*para centrar, solo cuando definimos alto y ancho*/
+    width: auto; /*se va a adaptar */
+    height: auto;
+    max-height: 100vh;
+    text-align: center;
+    position: absolute; /* depende de si el contenedor padre está con posicionamiento relativo(no ocupa su espacio) o no(si ocupa el espacio)*/
+    top: calc((100% - 206px) / 2);/*35vh;  el posicionamiento absoluto depende de top y left*/
+    left: calc((100% - 327px) / 2);/*35vw;*/
+
+}
+.valor{
+    font-size: 6rem;
+    font-weight: bold;
+
+}
+.btn{
+    text-transform: uppercase;
+    background: transparent;
+    color: var(--color-letra-2);
+    padding: .375rem .75rem;
+    letter-spacing: .1rem; /*interlineado*/
+    display: inline-block; /* hacer que funcione como un inline*/
+    font-size: .875rem;
+    border: 2px solid var(--color-letra-3);
+    cursor: pointer;
+    border-radius: var(--radius);
+    box-shadow: 0 1px 3px rgba(0,0,0,0,2);
+    margin: .5rem;
+    transition: all .3s linear; /* animacion*/
+}
+.btn:hover {
+    color: var(--color-letra-4);
+    background-color: var(--color-letra-3);
+}
+
+/*media query: css para determinados dispositivos */
+@media screen and (min-width: 800px){
+    h1{
+        font-size: 4rem;
+    }
+}
