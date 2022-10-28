@@ -23,3 +23,41 @@
 *         Si nos vieramos en la necesidad de que una función devolviera varios datos ¿cómo podríamos hacerlo?
 *
 ***************************************************************************************************************/
+function leerDatos(mensaje){
+    let i=true
+    let n=prompt(mensaje)
+    do{
+        if (isNaN(n)) {
+            n=prompt(mensaje)
+        }else{
+            i=false
+            return parseFloat(n)
+        }
+    }while(i)
+}
+
+let peso=leerDatos("Escribe tu peso (en kg)")
+let altura=leerDatos("Escribe tu altura (en metros)")
+
+function indice(a,p){
+    return p/(a*a)
+}
+
+function riesgo45(imc){
+    if (imc<=22){
+        return "bajo"
+    }else{
+        return "medio"  
+    }
+}
+
+function riesgoMas45(imc){
+    if (imc<=22){
+        return "medio"
+    }else{
+        return "alto"
+    }
+}
+
+
+console.log(`Tu índice de masa corporal es ${indice(altura,peso)} . Tienes un riesgo ${riesgo45(indice(altura,peso))} de enfermedad coronaria si eres menor de 45 años y ${riesgoMas45(indice(altura,peso))} si tienes más de 45 años`)

@@ -26,19 +26,41 @@ function leerDatos(mensaje){
 }
 
 let num=leerDatos("Escribe un numero")
-
+/*
+//de forma iterativa
 function fibonacci(n){
     let rdo=[0]
-    let f=1
-    while (n>f) {
-        //console.log(rdo.length)
-        if (f==1){
+    let f=0
+    while (n>=f)  {
+        if (f==0){
+            f++
+        }else{
             f=rdo[rdo.length-1]+rdo[rdo.length-2]
         }
-        console.log(f)
-        rdo.push(f)
+
+        if (n>=f)  rdo.push(f)
     }
     return rdo
 }
 
-console.log(fibonacci(num))
+console.log(fibonacci(num))*/
+
+//de forma recursiva
+let rdo=[0,1]
+function fibonacci(array,n,f){
+    
+    while (n>=f)  {
+        
+        f=array[array.length-1]+array[array.length-2]
+        
+        
+        if (n>=f){
+            array.push(f)
+            return fibonacci(array,num,f)
+        }  
+    }
+    return array
+}
+
+console.log(fibonacci(rdo,num,0))
+
