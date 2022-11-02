@@ -10,3 +10,28 @@
 *
 *
 ***************************************************************************************************************/
+function leerDatos(mensaje){
+    let i=true
+    let n=prompt(mensaje)
+    do{
+        if (isNaN(n)) {
+            n=prompt(mensaje)
+        }else{
+            i=false
+            return parseInt(n)
+        }
+    }while(i)
+}
+
+let num=leerDatos("Escribe un numero")
+
+function numAleatorio(n){
+    const array=[]
+    while (n>0) {
+        array.push(parseInt(Math.random()*100))
+        n--
+    }
+    return array
+}
+
+console.log(numAleatorio(num))

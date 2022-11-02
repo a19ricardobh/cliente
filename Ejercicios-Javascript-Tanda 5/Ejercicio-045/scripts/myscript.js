@@ -15,3 +15,34 @@
 *            
 *
 ***************************************************************************************************************/
+function leerDatos(mensaje){
+    let i=true
+    let n=prompt(mensaje)
+    do{
+        if (!isNaN(n)) {
+            n=prompt(mensaje)
+        }else {
+            i=false
+            return n
+        }
+    }while(i)
+}
+
+const fecha=leerDatos("Introduzca su fecha de nacimiento (DD/MM/AAAA)")
+
+const array=fecha.split("/")
+
+function numSuerte(arr){
+    let suerte=0
+    if (arr.length==1){
+        return arr[0]
+    }else{
+        arr.forEach(e => {    
+            suerte+=parseInt(e)
+        });
+        const arr1=suerte.toString().split("")
+        return numSuerte(arr1)
+    }
+}
+
+console.log(numSuerte(array))
