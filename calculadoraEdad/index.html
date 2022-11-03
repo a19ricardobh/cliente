@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/mystyle.css">
+    <script src="scripts/myscript.js" defer></script>
+    <title>Calculadora de edades</title>
+</head>
+<body>
+    <header>
+        <h1>Calculo de edades</h1>
+    </header>
+    <main class="container">
+        <section class="base">
+            <h2>Calculadora de edad</h2>
+            <div class="block">
+                <label for="dia" class="title">Dia</label>
+                <input type="text" name="dia" id="dia" placeholder="dd" minlength="1" maxlength="2" required>
+            </div>
+            <div class="block">
+                <label for="mes" class="title">Mes</label>
+                <input type="text" name="mes" id="mes" placeholder="mm" minlength="1" maxlength="2" required>
+            </div>
+            <div class="block">
+                <label for="ano" class="title">Año</label>
+                <input type="text" name="ano" id="ano" placeholder="aaaa" minlength="1" maxlength="4" required>
+            </div>
+            <div class="base">
+                <input type="button" value="calcular" name="submit" id="submit">
+            </div>
+            <div id="edad"></div>
+        </section>
+    </main>
+</body>
+</html>

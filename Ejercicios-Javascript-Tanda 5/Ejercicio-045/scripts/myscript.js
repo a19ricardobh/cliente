@@ -45,4 +45,9 @@ function numSuerte(arr){
     }
 }
 
+function numSuerteIterativo(arr) {
+    let suma=arr.reduce((anterior,actual)=>anterior+parseInt(actual),0)
+    whie
+}
+
 console.log(numSuerte(array))

@@ -1,0 +1,104 @@
+/*Estilos generales*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --size-w-caja: 540px;
+    --size-w-input-texto: 145px;
+    --color-primario: rgba(7,63,100,0.986);
+    --color-secundario: #61a3d8;
+    font-size: 14px;
+    line-height: 1.6;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--color-primario);
+    font-size: 1.2rem;
+}
+header{
+    text-align: center;
+    color: white;
+}
+
+h1{
+    font-size: 3rem;
+}
+
+p,input,label{
+    margin: 1rem;
+}
+div{
+    margin-top: 2.5rem;
+}
+
+.container{
+    width: var(--size-w-caja);
+    height: auto;
+    min-height: 100px;
+    margin: 100px 20px;
+    border-radius: 5px;
+    background-color: var(--color-secundario);
+    position: absolute;
+    top: 5vh;
+    left: calc((100% - var(--size-w-caja)) / 2);
+}
+
+.base{
+    width: 100%;
+    overflow: hidden;
+}
+.base h2{
+    text-align: center; /*para centrar los componentes dentro del contenedor, no vale para un bloque*/
+}
+.block{
+    white-space: calc(95% / 3);/*para poner el tamaño del espacio del input*/
+    /*float: left; /*va hacia la izquierda*/
+    display: inline-block; /*intenta poner todos los bloques en una misma linea*/
+    
+}
+
+.title{
+    font-size: 1.6rem;
+    font-weight: ;
+}
+
+input[type="text"]{
+    outline: none;
+    min-height: 11px;
+    border: 2px solid #101010;
+    width: 90%; /*hay que especificar el tamaño para que entre dentro del block*/
+}
+input[type="text"]:focus{ /*focus es cuando está en el foco, cuando estamos dentro del input*/
+    background-color: darkgrey;
+    border: 2px solid #d87630;    
+}
+
+input[type="button"]{ /*el botón está centrado por el text-align del contenedor .block*/
+    width: 150px;
+    border-radius: 5px;
+    color: white;
+    background-color: var(--color-primario);
+    box-shadow: ;/*para hacer una sombra*/
+    cursor: pointer; /*cambia el cursor cuando pasas por el boton*/
+}
+
+#edad{
+    margin-bottom: 1rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.5rem;
+    word-spacing: 2.5px;/*separacion entre las palabras*/
+    color: black;
+}
+
+@media(max-width:540px){
+    :root{
+        font-size: 12px;
+    }
+    .container{
+        position: static;
+        margin: 0.2rem;
+    }
+}
