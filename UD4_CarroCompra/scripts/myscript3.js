@@ -61,14 +61,12 @@ let $fragmento=$d.createDocumentFragment()
             let $clon=$templateLibro.cloneNode(true)
             $clon.querySelector("div").setAttribute("data-id",indice+1)
             let $tituloPrecio=$clon.querySelectorAll("strong")
-            $tituloPrecio.forEach(el=>el.setAttribute("data-id",indice+1))
+            
             $tituloPrecio[0].append(libro.titulo)
             $tituloPrecio[1].append(libro.precio+"Eur")
-            $clon.querySelector("figure").setAttribute("data-id",indice+1)
-            $clon.querySelector("img").setAttribute("data-id",indice+1)
+            
             $clon.querySelector("img").src=libro.imagen
-            $clon.querySelector("p").setAttribute("data-id",indice+1)
-            $clon.querySelector("input").setAttribute("data-id",indice+1)
+            
             $clon.querySelector("input").setAttribute("value",libro.precio)
             $fragmento.appendChild($clon)
     })
@@ -89,9 +87,27 @@ function calcularTotal(event) {
     $formPrecio.resultado.value=total
 }
 
-$formPrecio.addEventListener("click",event=>{
-   if (event.target.getAttribute("type")=="checkbox") {
+$columnas.addEventListener("click",event=>{
+   /* if (event.target.getAttribute("type")=="checkbox") {
+        calcularTotal(event)
+    } */
+    let padre=event.target
+    while (padre.getAttribute("data-id")==null) {
+        padre=padre.parentElement
+    }
+
+    padre.classList.toggle("seleccionado")
+    if (event.target.getAttribute("type")=="checkbox") {
+        padre.querySelector("input")
         calcularTotal(event)
     }
 })
 
+$formPrecio.addEventListener("reset",event=>{
+    //event.preventDefault()
+    $columnas.querySelectorAll("div").forEach($libro=>{
+        if($libro.classList.contains("seleccionado")){
+            $libro.classList.remove("seleccionado")
+        }    
+    })  
+})
