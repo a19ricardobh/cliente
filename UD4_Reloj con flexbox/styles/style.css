@@ -1,0 +1,63 @@
+*,
+*::after,
+*::before {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* cuerpo del documento */
+body {
+    /* alto 90% del viewport*/
+    height: 90%;
+    /* color de fondo para navegadores antiguos #bdc3c7 */
+    background: #bdc3c7;
+    /* Chrome 10-25, Safari 5.1-6 -webkit-linear-gradient gradiente hacia la derecha colores #2c3e50, #bdc3c7*/
+    background:-webkit-linear-gradient(to right,  #2c3e50, #bdc3c7);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ linear-gradient gradiente hacia la derecha colores #2c3e50, #bdc3c7 */
+    background: linear-gradient(to right,  #2c3e50, #bdc3c7);
+    /* Opera -o-linear-gradient gradiente hacia la derecha colores #2c3e50, #bdc3c7*/
+    background:-o-linear-gradient(to right,  #2c3e50, #bdc3c7);
+    /* Para Firefox -moz-linear-gradient gradiente hacia la derecha colores #2c3e50, #bdc3c7*/
+    background:-moz-linear-gradient(to right,  #2c3e50, #bdc3c7);
+    
+}
+
+#contenedor {    
+    /* posicionado con flexBox*/
+    display: flex;
+    flex-flow: row nowrap;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+    /* separación entre elementos .5rem */
+    gap: 0.5rem;
+}
+
+.caja {
+    /* posicionado con flexbox */
+    /* ancho y alto 200px */
+    /* bode redondeado de 0.9rem;*/
+    /* sombra superior 6px izquierda 10px difuminado 15px sombra creciente en 1px color rgb(8, 0, 0, 0.507) */
+    /* color letra azure */
+}
+
+#caja1 {
+    /* color de fondo degradado 180 grados con color rgba(247, 68, 78, 1) hasta el 49%, rgb(167, 74, 77) hasta el 50% y #b6343b hasta el 51%*/
+    /* para los navegadores Chrome 10-25, Safari 5.1-6 el degradado es 270 grados */
+}
+
+#caja2 {
+    /* lo mismo que el anterior pero para los colores
+     #78bcc4 49%
+     #40696d 50%
+     #4b8086e7 51%*/
+}
+
+#caja3 {
+    /* lo mismo que el anterior pero para los colores
+    #004a68 49%
+    #001f2b 50%
+    #023a50 51%*/
+}
