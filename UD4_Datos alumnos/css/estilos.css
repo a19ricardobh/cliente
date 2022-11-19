@@ -1,0 +1,182 @@
+*,
+*::after,
+*::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6rem;
+    --color-fondo1:#285f85;
+    --color-fondo2:#97a2aa;
+    --color-fondo-input:#d4dfe7;
+    --color-fondo-boton:#eb6506;
+}
+
+h1{
+font-size: 2.5rem;
+}
+
+h2{
+    font-size: 2rem;
+color: var(--color-fondo1)
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+header,footer{
+    width: 100vw;
+    height: auto;
+    max-height: 4rem;
+    background: var(--color-fondo1);
+    background: -webkit-linear-gradient(to right, #285f85, #97a2aa );
+    background: -moz-linear-gradient(to right, #285f85, #97a2aa );
+    background: -o-linear-gradient(to right, #285f85, #97a2aa );
+    background: linear-gradient(to right,var(--color-fondo1) ,var(--color-fondo2) );
+    display: flex;
+    justify-content: center;
+    color:white;
+}
+
+main{
+    flex: 2 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    width: 80vw;
+    height: auto;
+    padding: 1rem 0;
+}
+
+.contenedor{
+    width: max-content;
+    height: auto;
+    display: flex;
+    flex-grow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+fieldset{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.campo{
+    
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+
+}
+
+label{
+    width: 100px;
+}
+input{
+    border: none;
+    outline: 1px solid #666;
+    border-radius: 5px;
+    padding: 0.25rem;
+}
+
+input[type="radio"]{
+    outline: none;
+}
+input[type="text"],
+input[type="email"],
+input[type="tel"]{
+    width: 200px;
+}
+
+input[type="date"]{
+    height: max-content;
+}
+
+.campoRadio{
+    display: flex;
+    justify-content: left;
+    gap: 2.5rem;
+}
+
+.campoRadio label{
+    width: max-content;
+    margin-right: 0.5rem;
+}
+
+.centrado{
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.boton{
+   
+    background-color: var(--color-fondo-input);
+    font-size: 1.2rem;
+}
+#add{
+    background-color: var(--color-fondo1);
+    border-color: var(--color-fondo1);
+}
+
+#limpiar{
+    
+    background-color: var(--color-fondo-boton);
+    border-color: var(--color-fondo-boton);
+}
+#add:hover{
+    background-color: white;
+    border-color: blue;
+    color: var(--color-fondo1);
+}
+#limpiar:hover{
+    border-color: var(--color-fondo-boton);
+    color: var(--color-fondo-boton);
+    background-color: white;
+}
+
+input:required{
+    background-color: beige;
+    
+}
+input:focus{
+    outline-color: var(--color-fondo1);
+    background-color: var(--color-fondo-input);
+}
+
+input:focus:valid{
+outline-color: green;
+}
+input:focus:not(:valid){
+outline-color: red;
+}
+
+.contenedor{
+    display: flex;
+    flex-direction: column;
+}
+
+#contactos{
+    display: flex;
+    
+}
+
+.estilo-tabla th{
+    padding: 1rem;
+    background-color: #285f85;
+}

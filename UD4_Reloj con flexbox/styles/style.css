@@ -10,7 +10,7 @@
 /* cuerpo del documento */
 body {
     /* alto 90% del viewport*/
-    height: 90%;
+    height: 90vh;
     /* color de fondo para navegadores antiguos #bdc3c7 */
     background: #bdc3c7;
     /* Chrome 10-25, Safari 5.1-6 -webkit-linear-gradient gradiente hacia la derecha colores #2c3e50, #bdc3c7*/
@@ -21,7 +21,8 @@ body {
     background:-o-linear-gradient(to right,  #2c3e50, #bdc3c7);
     /* Para Firefox -moz-linear-gradient gradiente hacia la derecha colores #2c3e50, #bdc3c7*/
     background:-moz-linear-gradient(to right,  #2c3e50, #bdc3c7);
-    
+    display: flex;
+    justify-content: center;
 }
 
 #contenedor {    
@@ -37,15 +38,24 @@ body {
 
 .caja {
     /* posicionado con flexbox */
+    display: flex;
+    justify-content:center;
     /* ancho y alto 200px */
+    width: 200px;
+    height: 200px;
     /* bode redondeado de 0.9rem;*/
+    border-radius: 0.9rem;
     /* sombra superior 6px izquierda 10px difuminado 15px sombra creciente en 1px color rgb(8, 0, 0, 0.507) */
+    box-shadow: rgb(8, 0, 0, 0.507);
     /* color letra azure */
+    color: azure;
 }
 
 #caja1 {
     /* color de fondo degradado 180 grados con color rgba(247, 68, 78, 1) hasta el 49%, rgb(167, 74, 77) hasta el 50% y #b6343b hasta el 51%*/
+    background: linear-gradient(180deg, rgba(247, 68, 78, 1) 49%, rgb(167, 74, 77) 50%, #b6343b 51%);
     /* para los navegadores Chrome 10-25, Safari 5.1-6 el degradado es 270 grados */
+    background:-webkit-linear-gradient(270deg, rgba(247, 68, 78, 1) 49%, rgb(167, 74, 77) 50%, #b6343b 51%);
 }
 
 #caja2 {
@@ -53,6 +63,9 @@ body {
      #78bcc4 49%
      #40696d 50%
      #4b8086e7 51%*/
+     background: linear-gradient(180deg,#78bcc4 49%, #40696d 50%, #4b8086e7 51%);
+    /* para los navegadores Chrome 10-25, Safari 5.1-6 el degradado es 270 grados */
+    background:-webkit-linear-gradient(270deg,#78bcc4 49%, #40696d 50%, #4b8086e7 51%);
 }
 
 #caja3 {
@@ -60,4 +73,19 @@ body {
     #004a68 49%
     #001f2b 50%
     #023a50 51%*/
+    background: linear-gradient(180deg, #004a68 49%, #001f2b 50%, #023a50 51%);
+    /* para los navegadores Chrome 10-25, Safari 5.1-6 el degradado es 270 grados */
+    background:-webkit-linear-gradient(270deg, #004a68 49%, #001f2b 50%, #023a50 51%);
 }
+
+#hora{
+    font-size: 10rem;
+    margin: 2px;
+}
+#minuto{
+    font-size: 10rem;
+}
+#segundo{
+    font-size: 10rem;
+}
+
