@@ -7,8 +7,8 @@ const $d=document,
 
 
 let segundos=0,
-    minutos=0,
-    horas=0
+    minutos=26,
+    horas=19
 let crono=null
 
 function reloj(){

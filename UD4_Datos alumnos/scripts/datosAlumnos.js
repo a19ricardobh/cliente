@@ -12,6 +12,7 @@ const $d=document,
 
 
 $submit.addEventListener("click",event=>{
+    event.preventDefault()
     let $tr="",$td=""
     $tr=$d.createElement("tr")
     $alumnos.forEach(e=>{

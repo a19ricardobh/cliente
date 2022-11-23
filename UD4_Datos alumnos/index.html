@@ -1,97 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/estilos.css">
-    <script src="scripts/datosAlumnos.js" defer></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/estilos.css" />
+    <!-- <script src="scripts/datosAlumnos.js" defer></script> -->
+    <script src="scripts/myscript.js" defer></script>
     <title>Lista de contactos</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <h1>Lista de contactos</h1>
+      <h1>Lista de contactos</h1>
     </header>
     <main>
-        <section class="contenedor">
-            <h2>Formulario de contactos</h2>
-            <form action="">
-                <fieldset>
-                    <legend>Datos personales</legend>
-                    <p class="campo">
-                        <label for="nombre">Nombre</label>
-                        <input type="text" name="nombre" id="nombre" minlength="2" maxlength="15" placeholder="Ana" pattern="[a-zA-Záéíóú ñÑ-]{2-15}" title="Nombre de pila, caracteres mayusculas y minusculas, minimo 2 max 15"
-                         required autofocus>
-                    </p>
-                    <p class="campo">
-                        <label for="apellido">Apellido</label>
-                        <input type="text" name="apellido" id="apellido" minlength="2" maxlength="30" placeholder="Prez Pérez" pattern="[a-zA-Záéíóú ñÑ-]{2-30}" title="Apellidos, caracteres mayusculas y minusculas, minimo 2 max 30"
-                         required >
-                    </p>
-                    <p class="campo">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" id="email" placeholder="ana@email.com" pattern="[a-Z_]+([.][a-Z_])*@[a-Z_]+([.][a-Z_])*[.][a-zA-Z]{1-5}" title="Direccion de correo electronico" >
-                    </p>
-                    <p class="campo">
-                        <label for="telefono">Telefono</label>
-                        <input type="tel" name="telefono" id="telefono"  maxlength="15" placeholder="+34-981000000" pattern="([+][0-9]{1-3}-)*[0-9]{9}" title="Telefono con o sin prefijo pais"
-                         required >
-                    </p>
-                    <p class="campo">
-                        <label for="fechaNacimiento">Fecha nacimiento</label>
-                        <input type="date" name="fechaNacimiento" id="fechaNacimiento" min="1940-01-01" max="2010-12-31" placeholder="31-12-2022" title="fechas,"
-                         required >
-                    </p>
-                    <div class="campoRadio">
-                        <p class="campo">
-                            <label for="hombre">Hombre</label>
-                            <input type="radio" name="sexo" id="hombre" value="0" >
-                        </p>
-                        <p class="campo">
-                            <label for="mujer">Mujer</label>
-                            <input type="radio" name="sexo" id="mujer" value="1" >
-                        </p>
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <legend>Datos formacion</legend>
-                    <p>
-                        <label for="estudios"></label>
-                        <select name="estudios" id="estudios">
-                            <option value="0">Sin Estudios</option>
-                            <option value="1">ESO</option>
-                            <option value="2">Otros</option>
-
-
-                        </select>
-                    </p>
-                </fieldset>
-                <p class="centrado">
-                    <input type="submit" class="boton" id="add" value="Añadir">
-                    <label for="limpiar" hidden>Limpiar</label>
-                    <input type="reset" id="limpiar" value="Limpiar" class="boton">
-                </p>
-            </form>
-        </section>
-        <section class="contenedor">
-            <h2>Lista de contactos</h2>
-            <div id="contactos">
-                <table class="estilo-tabla">
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Apellidos</th>
-                        <th>Email</th>
-                        <th>Telefono</th>
-                        <th>fechaNacimiento</th>
-                        <th>Sexo</th>
-                        <th>Estudios</th>
-                    </tr>
-                </table>
+      <section class="contenedor">
+        <h2>Formulario de contactos</h2>
+        <form action="">
+          <fieldset>
+            <legend>Datos personales</legend>
+            <p class="campo">
+              <label for="nombre">Nombre</label>
+              <input
+                type="text"
+                name="nombre"
+                id="nombre"
+                minlength="2"
+                maxlength="15"
+                placeholder="Ana"
+                pattern="[a-zA-Záéíóú ñÑ-]{2-15}"
+                title="Nombre de pila, caracteres mayusculas y minusculas, minimo 2 max 15"
+                required
+                autofocus
+              />
+            </p>
+            <p class="campo">
+              <label for="apellido">Apellido</label>
+              <input
+                type="text"
+                name="apellido"
+                id="apellido"
+                minlength="2"
+                maxlength="30"
+                placeholder="Prez Pérez"
+                pattern="[a-zA-Záéíóú ñÑ-]{2-30}"
+                title="Apellidos, caracteres mayusculas y minusculas, minimo 2 max 30"
+                required
+              />
+            </p>
+            <p class="campo">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="ana@email.com"
+                pattern="[a-Z_]+([.][a-Z_])*@[a-Z_]+([.][a-Z_])*[.][a-zA-Z]{1-5}"
+                title="Direccion de correo electronico"
+              />
+            </p>
+            <p class="campo">
+              <label for="telefono">Telefono</label>
+              <input
+                type="tel"
+                name="telefono"
+                id="telefono"
+                maxlength="15"
+                placeholder="+34-981000000"
+                pattern="([+][0-9]{1-3}-)*[0-9]{9}"
+                title="Telefono con o sin prefijo pais"
+                required
+              />
+            </p>
+            <p class="campo">
+              <label for="fechaNacimiento">Fecha nacimiento</label>
+              <input
+                type="date"
+                name="fechaNacimiento"
+                id="fechaNacimiento"
+                min="1940-01-01"
+                max="2010-12-31"
+                placeholder="31-12-2022"
+                title="fechas,"
+                required
+              />
+            </p>
+            <div class="campoRadio">
+              <p class="campo">
+                <label for="hombre">Hombre</label>
+                <input type="radio" name="sexo" id="hombre" value="0" />
+              </p>
+              <p class="campo">
+                <label for="mujer">Mujer</label>
+                <input type="radio" name="sexo" id="mujer" value="1" />
+              </p>
             </div>
-        </section>
+          </fieldset>
+          <fieldset>
+            <legend>Datos formacion</legend>
+            <p>
+              <label for="estudios"></label>
+              <select name="estudios" id="estudios">
+                <option value="0">Sin Estudios</option>
+                <option value="1">ESO</option>
+                <option value="2">Otros</option>
+              </select>
+            </p>
+          </fieldset>
+          <p class="centrado">
+            <input type="submit" class="boton" id="add" value="Añadir" />
+            <label for="limpiar" hidden>Limpiar</label>
+            <input type="reset" id="limpiar" value="Limpiar" class="boton" />
+          </p>
+        </form>
+      </section>
+      <section class="contenedor">
+        <h2>Lista de contactos</h2>
+        <div id="contactos">
+          <table class="estilo-tabla">
+            <tr>
+              <th>Nombre</th>
+              <th>Apellidos</th>
+              <th>Email</th>
+              <th>Telefono</th>
+              <th>fechaNacimiento</th>
+              <th>Sexo</th>
+              <th>Estudios</th>
+              <th>Operaciones</th>
+              <!-- añadir botones para acciones -->
+            </tr>
+          </table>
+        </div>
+      </section>
     </main>
     <footer>
-        <p>&#169; RBH</p>
+      <p>&#169; RBH</p>
     </footer>
-</body>
+  </body>
 </html>
