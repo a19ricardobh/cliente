@@ -48,7 +48,7 @@ function render3(datos) {
 //incluir boton
 function render4(datos) {
   let $tabla = $contactos.getElementsByTagName("table")[0];
-  let mail=datos[2]
+  
   let $fila = $tabla.insertRow();
   //$fila.setAttribute("id",mail)
   datos.forEach((dato) => {
@@ -59,7 +59,9 @@ function render4(datos) {
   });
   const $botonBorrar=$d.createElement("button")
   $botonBorrar.textContent="Borrar"
-  $botonBorrar.setAttribute("id",mail)
+  $botonBorrar.setAttribute("class","borrar")
+  
+
   const $botonUpdate=$d.createElement("button")
   $botonUpdate.setAttribute("class","update")
   $botonUpdate.textContent="Update"
@@ -89,16 +91,6 @@ function addContact(e) {
 
 $formulario.addEventListener("submit",addContact)
 
-let $borrar=$d.querySelectorAll(".update")
-console.log($borrar)
-$borrar.forEach(fila => {
-  console.log("aqui")
-  fila.addEventListener("click",e=>{
-    console.log("aqui")
-    console.log(e.target.getAttrribute("id"))
-    console.log($d.getElementById(e.target.id))
-    $d.getElementById(e.target.id).parentNode.parentNode.remove()
-  });
-});
+
 
 
