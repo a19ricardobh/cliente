@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototipos y Herencia prototipica</title>
+</head>
+<body>
+    <script>
+        // Objetos literales
+/*         const animal1={
+            nombre:"perro",
+            saludar(){
+                console.log(`Saludos de un ${this.nombre}`)
+            }
+        }
+
+        const animal2={
+            nombre:"gato",
+            saludar(){
+                console.log(`Saludos de un ${this.nombre}`)
+            }
+        }
+
+        console.log(animal1)
+        console.log(animal2) */
+
+        // Funcion constructora
+/*      function Persona(nombre,genero) {
+            //Atributos
+            this.nombre=nombre
+            this.genero=genero
+
+            // Métodos
+            this.saludar=function (){
+                console.log(`Saludos de ${this.nombre}`)
+            } 
+        }
+
+        const persona1=new Persona("Juan","Hombre")
+        const persona2=new Persona("Rosa","Mujer")
+
+        console.log(persona1)
+        console.log(persona2) */
+
+        // Funcion constructora con los métodos asignados al prototipo
+         function Persona(nombre,genero) {
+            //Atributos
+            this.nombre=nombre
+            this.genero=genero
+        }
+
+       // Métodos agragados al prototipo de la funcion constructora
+        Persona.prototype.saludar=function (){
+            console.log(`Saludos de ${this.nombre}`)
+        } 
+
+        const persona1=new Persona("Juan","Hombre")
+        const persona2=new Persona("Rosa","Mujer")
+
+        console.log(persona1)
+        console.log(persona2)             
+
+        // Herencia prototipica
+        function Profesor(nombre,genero,especialidad){
+            this.super=Persona;
+            this.super(nombre,genero)
+            this.especialidad=especialidad
+        }
+
+        // Profesor está heredando de Persona: Prototipo de Profesor es una instancia de Persona
+        Profesor.prototype=new Persona()
+        Profesor.prototype.constructor=Profesor
+
+        // Sobreescribimos el metodo del prototipo padre en el hijo
+        Profesor.prototype.saludar=function(){
+            console.log(`Soy el profesor ${this.nombre} de la especialidad de ${this.especialidad}`)
+        }
+
+        Profesor.prototype.darClase=function(){
+            console.log(`Doy clase de ${this.especialidad}`)
+        }
+
+        const persona3=new Profesor("Marcos","Hombre","Matematicas")
+        console.log(persona3)
+        persona3.saludar()
+        persona3.darClase()
+        console.log(typeof persona3)
+ </script>
+</body>
+</html>

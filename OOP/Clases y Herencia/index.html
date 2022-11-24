@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clases y Herencias</title>
+</head>
+<body>
+    <script>
+        // Clase Persona
+         class Persona {             
+             // El constructor es un método especial que se ejecuta 
+             // en el momento de instanciar una clase
+             constructor(nombre,genero) {
+                 this.nombre=nombre
+                 this.genero=genero
+            }
+
+            // Métodos
+            saludar(){
+                console.log(`Saludos de ${this.nombre}`)
+            } 
+        }
+
+        const persona1=new Persona("Juan","Hombre")
+        const persona2=new Persona("Rosa","Mujer")
+
+        console.log(persona1)
+        console.log(persona2)
+
+    // Clase Profesor heredada de Persona
+    class Profesor extends Persona {
+
+        // Atributo Privado
+        //#altura=180
+
+        constructor(nombre,genero,especialidad) {
+            super(nombre,genero)
+            this.especialidad=especialidad
+            //this.edad=null
+        }
+
+        saludar(){
+            console.log(`Soy ${this.nombre}, profesor de la especialidad ${this.especialidad}`)
+        }
+
+        darClase(){
+            console.log(`Soy profesor de ${this.especialidad}`)
+        }
+
+        //Método estático: se puede llamar sin instanciar una clase
+/*         static queEres(){
+            console.log(`Soy un profesor, perteneciente a la familia de personas, pero odiada por los alumnos`)
+        } 
+        
+        static compararA(profesor1,profesor2) {
+            return profesor1.edad-profesor2.edad
+        }
+        */
+
+/*         // Método getter
+        set edad(edad){
+            this.edad=edad
+        }
+
+        // Método setter
+        get edad(){
+            return this.edad
+        } */
+
+/*         set altura(altura){
+            this.#altura=altura
+        }     
+*/
+    }
+
+    const profesor1=new Profesor("Marcos","Hombre","Matematicas")
+    console.log(profesor1)
+    //console.log(profesor1 instanceof Persona)
+    //console.log(profesor1 instanceof Profesor)
+    console.log(profesor1.__proto__ === Persona.prototype)
+    console.log(profesor1.__proto__ === Profesor.prototype)
+
+    /* 
+    profesor1.altura=200
+    console.log(profesor1) 
+    */
+
+    //Profesor.queEres()
+    //const profesores=[profesor1,profesor2]
+    //console.log(profesores.sort(Profesor.compararA))
+ </script>
+</body>
+</html>
