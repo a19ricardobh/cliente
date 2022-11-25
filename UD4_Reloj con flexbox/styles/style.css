@@ -46,7 +46,7 @@ body {
     /* bode redondeado de 0.9rem;*/
     border-radius: 0.9rem;
     /* sombra superior 6px izquierda 10px difuminado 15px sombra creciente en 1px color rgb(8, 0, 0, 0.507) */
-    box-shadow: rgb(8, 0, 0, 0.507);
+    box-shadow: 6px 10px 15px 1px rgb(8, 0, 0, 0.507);
     /* color letra azure */
     color: azure;
 }
