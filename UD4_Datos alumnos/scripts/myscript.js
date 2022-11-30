@@ -82,7 +82,7 @@ function addContact(e) {
     $formulario.email.value,
     $formulario.fechaNacimiento.value,
     $formulario.telefono.value,
-    $formulario.hombre?"Hombre":"Mujer",
+    $formulario.hombre.checked?"Hombre":"Mujer",
     $formulario.estudios.options[$formulario.estudios.selectedIndex].textContent,
   ];
   render4(datos);
