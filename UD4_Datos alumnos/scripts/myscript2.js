@@ -2,10 +2,11 @@ const $d = document,
   $formulario = $d.forms[0],
   $contactos = $d.querySelector("tbody"),
   $submit = $d.querySelector("#add");
-datosContactos = [];
+let datosContactos = [];
+
 // Con template
 function render(datosUsuarios) {
-  const $tabla = $contactos.getElementsByTagName("table")[0];
+  //const $tabla = $contactos.getElementsByTagName("table")[0];
   const $template = $d.querySelector("#template-fila").content;
   const $fragmento = $d.createDocumentFragment();
 
@@ -44,19 +45,31 @@ function addContact(e) {
     let contacto = datosContactos[$submit.getAttribute("data-row")];
     contacto.nombre = datos.nombre;
     contacto.apellidos = datos.apellidos;
-
+    contacto.email = datos.email;
+    contacto.fechaNacimiento = datos.fechaNacimiento;
+    contacto.telefono = datos.telefono;
+    contacto.sexo = datos.sexo;
+    contacto.estudios = datos.estudios;
     $submit.value = "Añadir";
     $submit.removeAttribute("data-row");
     $contactos.addEventListener("click", procesaAccion);
+    $contactos.querySelectorAll("a").forEach((enlace) => {
+      enlace.classList.remove("desactivado");
+      if (enlace.textContent == "Delete") {
+        enlace.classList.add("delete");
+      } else {
+        enlace.classList.add("update");
+      }
+    });
   } else {
     datosContactos.push(datos);
   }
 
+  localStorage.setItem("datosContactos", JSON.stringify(datosContactos));
   render(datosContactos);
   $formulario.reset();
 }
 
-$formulario.addEventListener("submit", addContact);
 function procesaAccion(e) {
   e.preventDefault();
   switch (e.target.textContent) {
@@ -79,7 +92,7 @@ function procesaAccion(e) {
       if (datosContactos[e.target.getAttribute("data-row")].sexo == "Hombre") {
         $formulario.hombre.checked = true;
       } else {
-        $formulario.mujer.checked;
+        $formulario.mujer.checked = true;
       }
 
       Array.from($formulario.estudios.options).forEach((option, i) => {
@@ -87,19 +100,32 @@ function procesaAccion(e) {
           option.textContent ==
           datosContactos[e.target.getAttribute("data-row")].estudios
         ) {
-          $formulario.estudios.value = i;
+          $formulario.estudios.selectedIndex = i;
         }
       });
       $submit.value = "Actualizar";
       $submit.setAttribute("data-row", e.target.getAttribute("data-row"));
       $contactos.removeEventListener("click", procesaAccion);
+      $contactos.querySelectorAll("a").forEach((enlace) => {
+        if (enlace.textContent == "Delete") {
+          enlace.classList.remove("delete");
+        } else {
+          enlace.classList.remove("update");
+        }
+        enlace.classList.add("desactivado");
+      });
       break;
   }
 }
+
+$formulario.addEventListener("submit", addContact);
 $contactos.addEventListener("click", procesaAccion);
 
-$d.addEventListener("DOMContentLoaded",()=>{
-    if (localStorage.getItem("datosContactos")!=null){
-        datosContactos=
-    }
-})
+$d.addEventListener("DOMContentLoaded", () => {
+  if (localStorage.getItem("datosContactos") != null) {
+    datosContactos = JSON.parse(localStorage.getItem("datosContactos"));
+    render(datosContactos);
+  } else {
+    datosContactos = [];
+  }
+});
