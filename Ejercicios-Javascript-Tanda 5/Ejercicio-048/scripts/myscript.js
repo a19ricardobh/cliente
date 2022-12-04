@@ -11,15 +11,37 @@
  *
  *
  ***************************************************************************************************************/
-const n = 127;
-let i = 0;
 
-Array.from(n.toString()).forEach((e) => {
-  i += parseInt(e);
-});
-
-if (n % i == 0) {
-  console.log(`${n} es un numero de Harshad`);
-} else {
-  console.log(`${n} no es un de Harshad, no es divisible por ${i}`);
+function pedirDato(msg, tipo) {
+  let centinela;
+  let dato;
+  do {
+    dato = prompt(msg);
+    if (tipo == "cadena") centinela = isNaN(dato) ? true : false;
+    if (tipo == "entero")
+      centinela =
+        !isNaN(dato) && Number.isInteger(parseFloat(dato)) ? true : false;
+    if (tipo == "flotante")
+      centinela =
+        !isNaN(dato) && !Number.isInteger(parseFloat(dato)) ? true : false;
+    if (tipo == "numero") centinela = !isNaN(dato) ? true : false;
+  } while (!centinela);
+  return dato;
 }
+
+function isHarshad(numero) {
+  return (
+    numero %
+      numero
+        .toString()
+        .split("")
+        .reduce((anterior, actual) => anterior + parseInt(actual), 0) ==
+    0
+  );
+}
+
+let numero = parseInt(pedirDato("Numero entero ?", "entero"));
+msg = isHarshad(numero)
+  ? `El numero ${numero} es de Harshad`
+  : `El numero ${numero} no es de Harshad`;
+console.log(msg);

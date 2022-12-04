@@ -1,35 +1,46 @@
 /***************************************************************************************************************
-*  
-*   Objetivo: n es automorfico si su cuadrado termina en n
-*
-*
-*   Entrada : 
-*
-*
-*   Salida  : 
-*
-*
-***************************************************************************************************************/
-function leerDatos(mensaje){
-    let i=true
-    let n=prompt(mensaje)
-    do{
-        if (isNaN(n)) {
-            n=prompt(mensaje)
-        }else{
-            i=false
-            return parseInt(n)
-        }
-    }while(i)
+ *
+ *   Objetivo: n es automorfico si su cuadrado termina en n
+ *
+ *
+ *   Entrada :
+ *
+ *
+ *   Salida  :
+ *
+ *
+ ***************************************************************************************************************/
+
+function pedirDato(msg, tipo) {
+  let centinela;
+  let dato;
+  do {
+    dato = prompt(msg);
+    if (tipo == "cadena") centinela = isNaN(dato) ? true : false;
+    if (tipo == "entero")
+      centinela =
+        !isNaN(dato) && Number.isInteger(parseFloat(dato)) ? true : false;
+    if (tipo == "flotante")
+      centinela =
+        !isNaN(dato) && !Number.isInteger(parseFloat(dato)) ? true : false;
+    if (tipo == "numero") centinela = !isNaN(dato) ? true : false;
+  } while (!centinela);
+  return dato;
 }
 
-let num=leerDatos("Escribe un numero")
+let numero = parseInt(pedirDato("Introduce un numero entero", "entero"));
 
-function isAutomorfico(n){
-    let m=(n*n).toString()
-    return m.slice(-n.toString().length)==n.toString()
-    //return m.endsWith(n.toString())
-}
+// Una forma
+console.log(
+  Math.pow(numero, 2).toString().slice(-numero.toString().length) ==
+    numero.toString()
+    ? "Es automorfico"
+    : "No es automorfico"
+);
 
-console.log(isAutomorfico(num)?"Es automorfico":"No es automorfico")
-
+// Segunda forma MEJOR
+console.log(
+  Math.pow(numero, 2).toString().endsWith(numero)
+    ? "Es automorfico"
+    : "No es automorfico"
+);

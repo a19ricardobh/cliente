@@ -1,66 +1,65 @@
 /***************************************************************************************************************
-*  
-*   Objetivo: Mostrar la serie de fibonacci hasta el número indicado por el usuario
-*             Cada elemento de la serie se calcula sumando los dos anteriores, empezando con 0 y 1
-*
-*   Entrada : n
-*
-*
-*   Salida  : 0,1,2,3,5,8,13,....
-*
-*   Notas:  ¿Cómo hacerlo de forma iterativa?
-*           ¿Cómo hacerlo de forma recursiva?
-*
-***************************************************************************************************************/
-function leerDatos(mensaje){
-    let i=true
-    let n=prompt(mensaje)
-    do{
-        if (isNaN(n)) {
-            n=prompt(mensaje)
-        }else{
-            i=false
-            return parseInt(n)
-        }
-    }while(i)
+ *
+ *   Objetivo: Mostrar la serie de fibonacci hasta el número indicado por el usuario
+ *             Cada elemento de la serie se calcula sumando los dos anteriores, empezando con 0 y 1
+ *
+ *   Entrada : n
+ *
+ *
+ *   Salida  : 0,1,1,2,3,5,8,13,....
+ *
+ *   Notas:  ¿Cómo hacerlo de forma iterativa?
+ *           ¿Cómo hacerlo de forma recursiva?
+ *
+ ***************************************************************************************************************/
+
+function pedirDato(msg, tipo) {
+  let centinela;
+  let dato;
+  do {
+    dato = prompt(msg);
+    if (tipo == "cadena") centinela = isNaN(dato) ? true : false;
+    if (tipo == "entero")
+      centinela =
+        !isNaN(dato) && Number.isInteger(parseFloat(dato)) ? true : false;
+    if (tipo == "flotante")
+      centinela =
+        !isNaN(dato) && !Number.isInteger(parseFloat(dato)) ? true : false;
+    if (tipo == "numero") centinela = !isNaN(dato) ? true : false;
+  } while (!centinela);
+  return dato;
 }
 
-let num=leerDatos("Escribe un numero")
-/*
-//de forma iterativa
-function fibonacci(n){
-    let rdo=[0]
-    let f=0
-    while (n>=f)  {
-        if (f==0){
-            f++
-        }else{
-            f=rdo[rdo.length-1]+rdo[rdo.length-2]
-        }
+// De forma iterativa
+function fiboIter(n) {
+  if (n == 0) {
+    return 0;
+  }
 
-        if (n>=f)  rdo.push(f)
-    }
-    return rdo
+  if (n == 1) {
+    return "0, 1";
+  }
+
+  const resultados = [0, 1];
+  i = 2;
+  do {
+    resultados.push(resultados[i - 1] + resultados[i - 2]);
+    i++;
+  } while (resultados.length < n);
+  return resultados.join(", ");
 }
 
-console.log(fibonacci(num))*/
-
-//de forma recursiva
-let rdo=[0,1]
-function fibonacci(array,n,f){
-    
-    while (n>=f)  {
-        
-        f=array[array.length-1]+array[array.length-2]
-        
-        
-        if (n>=f){
-            array.push(f)
-            return fibonacci(array,num,f)
-        }  
-    }
-    return array
+// De forma recursiva
+function fiboRecur(n) {
+  const numeros = [];
+  numeros.push(0);
+  numeros.push(1);
+  for (let i = 2; i < n; i++) {
+    numeros.push(numeros[i - 1] + numeros[i - 2]);
+  }
+  return numeros;
 }
 
-console.log(fibonacci(rdo,num,0))
-
+let num = parseInt(pedirDato("Escribe un numero", "entero"));
+console.log(fiboIter(num));
+console.log(fiboRecur(num));

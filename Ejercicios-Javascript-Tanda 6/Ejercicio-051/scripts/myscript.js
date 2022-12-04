@@ -12,29 +12,48 @@
  *             La suma de los elementos impares del array es: YYYY
  *
  ***************************************************************************************************************/
-const n = 6;
-/* const array = [];
-let i = n;
-while (i > 0) {
-  array.push(parseInt(Math.random() * 100));
-  i--;
+
+function pedirDato(msg, tipo) {
+  let centinela;
+  let dato;
+  do {
+    dato = prompt(msg);
+    if (tipo == "cadena") centinela = isNaN(dato) ? true : false;
+    if (tipo == "entero")
+      centinela =
+        !isNaN(dato) && Number.isInteger(parseFloat(dato)) ? true : false;
+    if (tipo == "flotante")
+      centinela =
+        !isNaN(dato) && !Number.isInteger(parseFloat(dato)) ? true : false;
+    if (tipo == "numero") centinela = !isNaN(dato) ? true : false;
+  } while (!centinela);
+  return dato;
 }
- */
+
 const aleatorio = (min, max) => Math.floor(min + (max - min) * Math.random());
-const array = Array.from({ length: n }, () => aleatorio(0, 100));
-const matriz = Array.from({ length: n }, () =>
-  Array.from({ length: n }, () => aleatorio(0, 100))
-);
 
-console.log(array);
+let longitud = parseInt(pedirDato("Longitud ? ", "entero"));
 
-console.log(array.filter((value) => value % 2 == 0));
-console.log(array.filter((value) => value % 2 != 0));
+const array = Array.from({ length: longitud }, () => aleatorio(1, 10));
+
+console.log(`Los elementos del array son ${array.join(", ")}`);
 console.log(
-  array.filter((value) => value % 2 == 0).reduce((acc, val) => (acc += val))
+  `Los elementos pares del array son ${array
+    .filter((el) => el % 2 == 0)
+    .join(", ")}`
 );
 console.log(
-  array.filter((value) => value % 2 != 0).reduce((acc, val) => (acc += val))
+  `Los elementos impares del array son ${array
+    .filter((el) => el % 2 != 0)
+    .join(", ")}`
 );
-
-console.log(matriz);
+console.log(
+  `La suma de los elementos pares del array son ${array
+    .filter((el) => el % 2 == 0)
+    .reduce((anterior, actual) => anterior + actual, 0)}`
+);
+console.log(
+  `La suma de los elementos impares del array son ${array
+    .filter((el) => el % 2 != 0)
+    .reduce((anterior, actual) => anterior + actual, 0)}`
+);

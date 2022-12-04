@@ -1,34 +1,37 @@
 /***************************************************************************************************************
-*  
-*   Objetivo: Determinar si un número entero introducido es par o impar
-*             Crear para ello una función
-*
-*   Entrada : n
-*
-*   Salida  : El número n es (par|impar)
-*
-***************************************************************************************************************/
-function par(num) {
-    if (num%2==0){
-        return true //par
-    }else{
-        return false //impar
-    }
+ *
+ *   Objetivo: Determinar si un número entero introducido es par o impar
+ *             Crear para ello una función
+ *
+ *   Entrada : n
+ *
+ *   Salida  : El número n es (par|impar)
+ *
+ ***************************************************************************************************************/
+
+function pedirDato(msg, tipo) {
+  let centinela;
+  let dato;
+  do {
+    dato = prompt(msg);
+    if (tipo == "cadena") centinela = isNaN(dato) ? true : false;
+    if (tipo == "entero")
+      centinela =
+        !isNaN(dato) && Number.isInteger(parseFloat(dato)) ? true : false;
+    if (tipo == "flotante")
+      centinela =
+        !isNaN(dato) && !Number.isInteger(parseFloat(dato)) ? true : false;
+    if (tipo == "numero") centinela = !isNaN(dato) ? true : false;
+  } while (!centinela);
+  return dato;
 }
 
-let i=true
-let n=prompt("Introducir un numero")
-do{
-    if (isNaN(n)) {
-        n=prompt("Introducir un numero")
-    }else {
-        i=false
-    }
-}while(i)
+let numero = parseInt(pedirDato("Numero entero", "entero"));
 
+// Funcion expresada
+const isPar = (num) => num % 2 == 0;
 
-if (par(parseInt(n))){
-    alert(`El número ${parseInt(n)} es par`)
-}else{
-    alert(`El número ${parseInt(n)} es impar`)
-}
+let msg = isPar(numero)
+  ? `El numero ${numero} es par`
+  : `El numero ${numero} es impar`;
+console.log(msg);

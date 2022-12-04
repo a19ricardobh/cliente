@@ -1,58 +1,41 @@
 /***************************************************************************************************************
-*  
-*   Objetivo: Solicitamos un número entero n al usuario y mostramos en la consola los numeros desde 0 hasta ese numero
-*
-*
-*   Entrada : numero entero n
-*
-*
-*   Salida  : 0,1,2,3,4,5,....,n
-*
-*
-***************************************************************************************************************/
-function leerDatos(mensaje){
-    let i=true
-    let n=prompt(mensaje)
-    do{
-        if (isNaN(n)) {
-            n=prompt(mensaje)
-        }else {
-            i=false
-            return parseInt(n)
-        }
-    }while(i)
+ *
+ *   Objetivo: Solicitamos un número entero n al usuario y mostramos en la consola los numeros desde 0 hasta ese numero
+ *
+ *
+ *   Entrada : numero entero n
+ *
+ *
+ *   Salida  : 0,1,2,3,4,5,....,n
+ *
+ *
+ ***************************************************************************************************************/
+
+function pedirDato(msg, tipo) {
+  let centinela;
+  let dato;
+  do {
+    dato = prompt(msg);
+    if (tipo == "cadena") centinela = isNaN(dato) ? true : false;
+    if (tipo == "entero")
+      centinela =
+        !isNaN(dato) && Number.isInteger(parseFloat(dato)) ? true : false;
+    if (tipo == "flotante")
+      centinela =
+        !isNaN(dato) && !Number.isInteger(parseFloat(dato)) ? true : false;
+    if (tipo == "numero") centinela = !isNaN(dato) ? true : false;
+  } while (!centinela);
+  return dato;
 }
 
-let num=leerDatos("Escribe un numero entero")
+let num = parseInt(pedirDato("Escriba un numero: ", "entero"));
 
-let texto1=""
-for (let i=0;i<=num;i++) {
-    if (i==num)
-        texto1+=i
-    else
-        texto1+=i+", "
-    // texto1=(i==num)?texto1+i:texto1+i+", "
+let msg = "";
+for (let i = 0; i <= num; i++) {
+  msg += i < num ? `${i}, ` : `${i}`;
 }
-console.log(texto1) 
+console.log(msg);
 
-/* const vector=[]
-for (let i=0;i<=num;i++) {
-    vector.push(i)
-}
-console.log(vector.join(", ")) */
-
-/* function doble(x) {
-    return 2*x
-}
-
-const doble2=x=>2*x */
-
-//console.log(Array.from({length:num},(el,indice)=>indice).join(", "))
-
-
-
-
-
-
-
-
+// Con arrays
+//const numeros = Array.from({ length: num + 1 }, (el, i) => i);
+//console.log(numeros.join(", "));

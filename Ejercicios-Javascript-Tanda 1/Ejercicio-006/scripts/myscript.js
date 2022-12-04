@@ -1,34 +1,47 @@
 /***************************************************************************************************************
-*  
-*   Objetivo: Solicita al usuario el valor de los catetos de un triángulo rectángulo y calcula la hipotenusa del
-*             triángulo empleando el teorema de Pitágoras (hipotenusa=raiz_cuadrada(catetoA²+catetoB²))
-*
-*   Entrada : catetoA, catetoB
-*
-*
-*   Salida  : La hipotenusa del triángulo con catetos catetoA y catetoB es XXXX
-*
-*
-***************************************************************************************************************/
+ *
+ *   Objetivo: Solicita al usuario el valor de los catetos de un triángulo rectángulo y calcula la hipotenusa del
+ *             triángulo empleando el teorema de Pitágoras (hipotenusa=raiz_cuadrada(catetoA²+catetoB²))
+ *
+ *   Entrada : catetoA, catetoB
+ *
+ *
+ *   Salida  : La hipotenusa del triángulo con catetos catetoA y catetoB es XXXX
+ *
+ *
+ ***************************************************************************************************************/
 
-function leerDato(mensaje,tipo) {
-    let i=true
-    let c=prompt(mensaje)   
-    do{
-        if (isNaN(c) && typeof tipo=="string") {
-            c=prompt(mensaje)
-        }else {
-            i=false
-            return c
-        }
-    }while(i)
-
+function pedirDato(msg, tipo) {
+  let centinela;
+  let dato;
+  do {
+    dato = prompt(msg);
+    if (tipo == "cadena") centinela = isNaN(dato) ? true : false;
+    if (tipo == "entero")
+      centinela =
+        !isNaN(dato) && Number.isInteger(parseFloat(dato)) ? true : false;
+    if (tipo == "flotante")
+      centinela =
+        !isNaN(dato) && !Number.isInteger(parseFloat(dato)) ? true : false;
+    if (tipo == "numero") centinela = !isNaN(dato) ? true : false;
+  } while (!centinela);
+  return dato;
 }
 
-let ca=leerDato("Valor cateto A:","number")
-let cb=leerDato("Valor cateto B:","number")
+// Function expresada
+//const hipotenusa=(cateto1,cateto2)=>Math.sqrt(Math.pow(cateto1,2)+Math.pow(cateto2,2)).toFixed(2)
 
-let h=Math.sqrt(ca*ca+cb*cb).toFixed(2)
-//let h=Math.sqrt(Math.pow(ca,2)+Math.pow(cb,2)).toFixed(2)
+// Funcion declarada
+function hipotenusa(cateto1, cateto2) {
+  return Math.sqrt(Math.pow(cateto1, 2) + Math.pow(cateto2, 2)).toFixed(2);
+}
 
-alert(`La hipotenusa del triángulo con catetos ${ca} y ${cb} es ${h} `)
+let catetoA = parseFloat(pedirDato("Cateto 1", "numero"));
+let catetoB = parseFloat(pedirDato("Cateto 2", "numero"));
+
+console.log(
+  `La hipotenusa de un triangulo rectangulo con catetos ${catetoA} y ${catetoB} mide ${hipotenusa(
+    catetoA,
+    catetoB
+  )}`
+);

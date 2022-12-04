@@ -1,39 +1,51 @@
 /***************************************************************************************************************
-*  
-*   Objetivo: Solicitar al usuario que visita la página dos números enteros y mostrar en la consola el resultado de 
-*             sumarlos, restarlos, multiplicarlos y dividirlos
-*
-*   Entrada : Dos números enteros: numero1, numero2
-*
-*
-*   Salida  : La suma de numero1 y numero2 es: numero1+numero2 
-*             La resta de numero1 y numero2 es: numero1-numero2 
-*             El producto de numero1 y numero2 es: numero1*numero2 
-*             La division de numero1 entre numero2 es: numero1/numero2 
-*
-*   Notas   : Ten en cuenta que:
-*                   - la división entre los números puede dar un número con muchos decimales
-*                     ¿Cómo podríamos limitar el número de decimales que se mostrarán?
-*                   - ¿Qué pasaría en la division si numero2=0 ?
-*
-***************************************************************************************************************/
-let n1=prompt("Escriba un primer numero")
-let n2=prompt("Escriba un segundo numero")
-n1=parseInt(n1)
-n2=parseInt(n2)
+ *
+ *   Objetivo: Solicitar al usuario que visita la página dos números enteros y mostrar en la consola el resultado de
+ *             sumarlos, restarlos, multiplicarlos y dividirlos
+ *
+ *   Entrada : Dos números enteros: numero1, numero2
+ *
+ *
+ *   Salida  : La suma de numero1 y numero2 es: numero1+numero2
+ *             La resta de numero1 y numero2 es: numero1-numero2
+ *             El producto de numero1 y numero2 es: numero1*numero2
+ *             La division de numero1 entre numero2 es: numero1/numero2
+ *
+ *   Notas   : Ten en cuenta que:
+ *                   - la división entre los números puede dar un número con muchos decimales
+ *                     ¿Cómo podríamos limitar el número de decimales que se mostrarán?
+ *                   - ¿Qué pasaría en la division si numero2=0 ?
+ *
+ ***************************************************************************************************************/
 
-let suma=n1+n2
-let resta=n1-n2
-let por=n1*n2
-
-if (n2=0){
-    alert("No se puede dividir por cero")
-}else{
-    let div=n1/n2
+function pedirDato(msg, tipo) {
+  let centinela;
+  let dato;
+  do {
+    dato = prompt(msg);
+    if (tipo == "cadena") centinela = isNaN(dato) ? true : false;
+    if (tipo == "entero")
+      centinela =
+        !isNaN(dato) && Number.isInteger(parseFloat(dato)) ? true : false;
+    if (tipo == "flotante")
+      centinela =
+        !isNaN(dato) && !Number.isInteger(parseFloat(dato)) ? true : false;
+    if (tipo == "numero") centinela = !isNaN(dato) ? true : false;
+  } while (!centinela);
+  return dato;
 }
 
-alert(`La suma de numero1 y numero2 es: ${suma} 
-    * La resta de numero1 y numero2 es: ${resta} 
-    * El producto de numero1 y numero2 es: ${por} 
-    * La division de numero1 entre numero2 es: ${div.toFixed(2)}`)
+let numero1 = parseInt(pedirDato("Numero 1", "entero"));
+let numero2 = parseInt(pedirDato("Numero 2", "entero"));
 
+console.log(`La suma de ${numero1} y ${numero2} es: ${numero1 + numero2}`);
+console.log(`La resta de ${numero1} y ${numero2} es: ${numero1 - numero2}`);
+console.log(`El producto de ${numero1} y ${numero2} es: ${numero1 * numero2}`);
+
+msg =
+  numero2 != 0
+    ? `La division de ${numero1} entre ${numero2} es: ${(
+        numero1 / numero2
+      ).toFixed(2)}`
+    : `No podemos dividir ${numero1} por ${numero2}`;
+console.log(msg);
