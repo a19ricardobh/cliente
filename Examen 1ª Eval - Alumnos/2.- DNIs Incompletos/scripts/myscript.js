@@ -24,7 +24,7 @@ function buscarPosiciones(cad, letra) {
 //NIF_Incompleto="?2345678C"  [82345678C]
 //NIF_Incompleto="?2345678A"  []
 //NIF_Incompleto="?2345?78C"  [12345178C,22345578C,32345978C,72345278C,82345678C]
-function buscarNIFIncompletos(indice,pos,texto) {
+/* function buscarNIFIncompletos(indice,pos,texto) {
     let nifs=[]
     if (indice==1){ //en caso de que sea uno
         let casos=9
@@ -58,21 +58,84 @@ function buscarNIFIncompletos(indice,pos,texto) {
         }
     }
     return nifs
+} */
+
+function buscarNIFIncompletos(pos,texto) {
+    let nifs=[]
+        let casos=9
+        while (casos>=0) {
+            let aux=texto.split("")
+            let texto_aux=""
+            aux[pos]=casos.toString()
+            for (let i = 0; i < aux.length; i++) {
+                texto_aux=texto_aux.concat(aux[i])   
+            }
+            
+            if (isNIF(texto_aux.slice(0,8),texto_aux[8])){
+                nifs.push(texto_aux)
+            }
+
+            casos--
+        }
+    
+    return nifs
+}
+
+function modificaNif(texto,pos,caracter){
+    let aux=texto.split("")
+    let texto_aux=""
+    aux[pos]=caracter
+    for (let i = 0; i < aux.length; i++) {
+        texto_aux=texto_aux.concat(aux[i])   
+    }
+    return texto_aux
 }
 
 // Resto del código....
 
 let NIF_Incompleto="?2345?78C"
-
+const casos=["0","1","2","3","4","5","6","7","8","9"]
 const arrayPosiciones=buscarPosiciones(NIF_Incompleto,"?")
 
 //veces que se repite
 let r=arrayPosiciones.length
 
-if (r==0){
-    console.log("No existen NIFs correctos")
-}else{
-    const resultado=buscarNIFIncompletos(r,arrayPosiciones,NIF_Incompleto)
-    console.log(resultado)
+switch (r) {
+    case 0:
+        console.log("No existen NIFs correctos")
+        break;
+    case 1:
+        console.log(buscarNIFIncompletos(r,arrayPosiciones,NIF_Incompleto))
+        break;
+    case 2:
+        let resultado=[]
+        arrayPosiciones.forEach(pos=>{
+            casos.forEach(e => {
+                resultado.push(buscarNIFIncompletos(pos,modificaNif(NIF_Incompleto,pos,e)))
+            })
+        }) 
+        console.log(resultado)  
+        break;
+    case 3:
+        console.log("No existen NIFs correctos")
+        break;
+    case 4:
+        console.log("No existen NIFs correctos")
+        break;
+    case 5:
+        console.log("No existen NIFs correctos")
+        break;
+    case 6:
+        console.log("No existen NIFs correctos")
+        break;
+    case 7:
+        console.log("No existen NIFs correctos")
+        break;
+    case 8:
+        console.log("No existen NIFs correctos")
+        break;
 }
+
+
+
 
