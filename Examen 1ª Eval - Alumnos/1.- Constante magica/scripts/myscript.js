@@ -12,7 +12,8 @@ function isEnd(matriz) {
 
 // Funcion generadora de la matriz inicial NxN rellena de -1
 function generaMatriz(n) {
-
+  const matrixAux=[]
+  for
 }
 
 // Funcion que genera la constante mágica a partir de los datos iniciales
