@@ -13,7 +13,14 @@ function isEnd(matriz) {
 // Funcion generadora de la matriz inicial NxN rellena de -1
 function generaMatriz(n) {
   const matrixAux=[]
-  for
+  for (let i = 0; i < n; i++) {
+    let vector=[]
+    for (let j = 0; j < n; j++) {
+      vector[j] = -1
+    }
+    matrixAux[i]=vector
+  }
+  return matrixAux
 }
 
 // Funcion que genera la constante mágica a partir de los datos iniciales
@@ -37,3 +44,5 @@ matriz final
 //constanteMagica(3,4)=24
 
 // Resto del código....
+const n=5
+console.log(generaMatriz(n))
