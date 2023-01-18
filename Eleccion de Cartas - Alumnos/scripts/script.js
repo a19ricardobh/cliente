@@ -3,7 +3,8 @@ const $d=document,
     $del=$d.querySelector("#delCarta"),
     $figuras=$d.querySelector("#figuras"),
     $nCartas=$d.querySelector("#ncartas"),
-    $realizar=$d.querySelector("#btnOperar")
+    $realizar=$d.querySelector("#btnOperar"),
+    $radio=$d.getElementsByName("operacion")
 
     
     $palo=$d.querySelector("#palo")
@@ -42,6 +43,7 @@ function imprime(cartas){
 function addCarta(e){
     e.preventDefault()   
     let carta=`${$palo.value}${$numero.value}`
+
     if (cartas.includes(carta)){
         alert("La carta ya existe")
     }else{
@@ -62,18 +64,34 @@ function borraCarta(e){
 }
 
 function sustituirCarta(carta,posicion){
-    e.preventDefault()   
-    let del=`${$palo.value}${$numero.value}`
-    if (cartas.includes(del)){
-        cartas.splice(cartas.indexOf(del),1)
+
+    if (cartas.includes(carta)){
+        alert("La carta ya está, no se puede sustituir")
     }else{
-        alert("La carta no está en la mesa")
+        cartas.splice(posicion-1,1,carta)
     }
     imprime(cartas)
 }
 
+function insertarCarta(carta,posicion){
+
+    if (cartas.includes(carta)){
+        alert("La carta ya está, no se puede insertar")
+    }else{
+        cartas.splice(posicion-1,0,carta)
+    }
+    imprime(cartas)
+}
 
 $add.addEventListener("click",addCarta)
 $del.addEventListener("click",borraCarta)
 
-
+$realizar.addEventListener("click",(e)=>{
+    e.preventDefault() 
+    let s=`${$palo.value}${$numero.value}`
+    if ($radio[0].checked){
+        insertarCarta(s,$nCartas.value)
+    }else{
+        sustituirCarta(s,$nCartas.value)
+    }
+})
