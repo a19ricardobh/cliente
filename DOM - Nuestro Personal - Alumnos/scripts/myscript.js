@@ -1,7 +1,7 @@
 // Datos del Personal
 const personal = [
   {
-    id: 1,
+    id: 0,
     nombre: "Sara Alonso",
     trabajo: "Diseñadora UX",
     foto:
@@ -10,7 +10,7 @@ const personal = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit.Qui deleniti incidunt alias porro. Dolores possimus dolorum saepe beatae alias repudiandae.",
   },
   {
-    id: 2,
+    id: 1,
     nombre: "Ana Lopez",
     trabajo: "Desarrolladora Web",
     foto:
@@ -19,7 +19,7 @@ const personal = [
       "I'm baby meggings twee health goth +1. Bicycle rights tumeric chartreuse before they sold out chambray pop-up. Shaman humblebrag pickled coloring book salvia hoodie, cold-pressed four dollar toast everyday carry",
   },
   {
-    id: 3,
+    id: 2,
     nombre: "Rosa Martinez",
     trabajo: "Desarrolladora Web",
     foto:
@@ -28,7 +28,7 @@ const personal = [
       "Helvetica artisan kinfolk thundercats lumbersexual blue bottle. Disrupt glossier gastropub deep v vice franzen hell of brooklyn twee enamel pin fashion axe.photo booth jean shorts artisan narwhal.",
   },
   {
-    id: 4,
+    id: 3,
     nombre: "Pedro Rodriguez",
     trabajo: "Becario",
     foto:
@@ -37,7 +37,7 @@ const personal = [
       "Sriracha literally flexitarian irony, vape marfa unicorn. Glossier tattooed 8-bit, fixie waistcoat offal activated charcoal slow-carb marfa hell of pabst raclette post-ironic jianbing swag.",
   },
   {
-    id: 5,
+    id: 4,
     nombre: "Marcos Alonso",
     trabajo: "El Jefe",
     foto:
@@ -69,17 +69,24 @@ $d.addEventListener("DOMContentLoaded",(e)=>{
   let i=0
   $empleado.addEventListener("click", (e)=>{
    e.preventDefault()
-   if (e.target.classList.contains("fa-chevron-right")){
-     if (i==personal.length) 
+   if (e.target.classList.contains("fa-chevron-right")||e.target.classList.contains("next-btn")) {
+      if (i==personal.length-1) 
         i=0
-     render(personal[i])
-     i++
-   }else{
-     if (i<0)
-        i=personal.length-1
-     render(personal[i])
-     i--
+      else
+        i++
    }
-  })
-  
-$d.
+   if (e.target.classList.contains("fa-chevron-left")||e.target.classList.contains("prev-btn")) {
+      if (i<1)
+        i=personal.length-1
+      else 
+         i--
+   }
+   if (e.target.classList.contains("random-btn")) {
+      let aleatorio
+      do{
+        aleatorio=Math.floor(Math.random() * ((personal.length-1) - 0) + 0)
+      }while(i==aleatorio)
+      i=aleatorio
+   }
+   render(personal[i])
+  }) 
