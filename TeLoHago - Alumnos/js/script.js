@@ -40,16 +40,16 @@ function calculoPrecio(dia){
             precio +=$coches.value*tarifas.coche.itv
         }
         if ($taller.checked){
-            precio +=$coches.value*2
+            precio +=$coches.value*tarifas.coche.taller
         }
         if ($lavado.checked){
-            precio +=$coches.value*3
+            precio +=$coches.value*tarifas.coche.lavar
         }
     }
 
     //cargo fin de semana
     if (dia==0 || dia==6){
-        precio +=5
+        precio +=tarifas.finDeSemana
     }
 
     return precio
@@ -86,7 +86,7 @@ $formulario.addEventListener("change",(e)=>{
     let dia=new Date($fecha.value)
     let p=1
     if ($viaPago.checked){
-        p=0.8
+        p=tarifas.efectivo
     }
     $valor.innerHTML=((calculoPrecio(dia.getDay())+tarifas.localidad[$localidad.options[$localidad.selectedIndex].innerText])*p).toFixed(2)
 
