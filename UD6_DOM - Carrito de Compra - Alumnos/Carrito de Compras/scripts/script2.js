@@ -127,7 +127,6 @@ $tabla.addEventListener("click", e=>{
 })
 
 $pie.addEventListener("click", e=>{
-    e.preventDefault()
     if (e.target.id=="vaciar-carrito"){
         carrito=[]
         renderCarrito()
