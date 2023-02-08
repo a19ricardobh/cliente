@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/mystyles.css" />
+    <script src="scripts/myscript.js" defer></script>
+    <title>Eventos de teclado</title>
+  </head>
+  <body>
+    <div id="insertar">
+      <div class="tecla">
+        Presiona cualquier tecla para obtener su código
+      </div>
+    </div>
+  </body>
+  <template id="resultado">
+    <div class="tecla">
+      <!-- event.key --> 
+      <small>event.key</small>
+    </div>
+    
+    <div class="tecla">
+      <!-- event.keyCode --> 
+      <small>event.keyCode</small>
+    </div>
+    
+    <div class="tecla">
+      <!-- event.code --> 
+      <small>event.code</small>
+    </div>
+  </template>
+</html>

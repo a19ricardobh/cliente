@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/mystyles.css" />
+    <script src="scripts/myscript.js" defer></script>
+    <title>Verificar Cuenta Online</title>
+  </head>
+  <body>
+    <div class="contenedor">
+      <h2>Verificar tu cuenta online</h2>
+      <p>Te hemos enviado un código de seis dígitos a basura@gmail.com <br/> Introduce el código para confirmar tu dirección de email</p>
+      <div class="codigo">
+        <input type="number" class="digito" placeholder="0" min="0" max="9" required>
+        <input type="number" class="digito" placeholder="0" min="0" max="9" required>
+        <input type="number" class="digito" placeholder="0" min="0" max="9" required>
+        <input type="number" class="digito" placeholder="0" min="0" max="9" required>
+        <input type="number" class="digito" placeholder="0" min="0" max="9" required>
+        <input type="number" class="digito" placeholder="0" min="0" max="9" required>
+      </div>
+      <div id="enviar">
+        <input type="submit" value="Enviar">
+      </div>
+      <small class="info">
+        No te enviaré un email ya que no tenemos tu email, ¿ verdad ?      
+      </small>
+    </div>
+  </body>
+</html>
