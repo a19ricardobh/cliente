@@ -61,6 +61,7 @@ productos.forEach(element => {
 });
 
 function renderCarrito(){
+    localStorage.setItem("carrito", JSON.stringify(carrito));
     document.querySelector("tbody").innerHTML=""
     document.querySelector("tfoot").innerHTML=""
     if (carrito.length==0){
@@ -133,3 +134,15 @@ $pie.addEventListener("click", e=>{
         renderCarrito()
     }
 })
+
+//carga inicial de los elementos del carrito
+$d.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem("carrito") != null) {
+      carrito = JSON.parse(localStorage.getItem("carrito"));
+      renderCarrito();
+    } else {
+      carrito = [];
+    }
+});
+
+
