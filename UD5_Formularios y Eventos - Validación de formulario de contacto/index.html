@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Formulario de contacto con validación</title>
+	<link rel="stylesheet" href="styles/mystyles.css">
+	<script src="scripts/myscript.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Contáctanos !</h2>
+        <div id="error"></div>
+        <form id="myform">
+            <div class="input">
+                <input type="text" placeholder="Nombre" id="name" name="name">
+            </div>
+            <div class="input">
+                <input type="text" placeholder="Teléfono" id="phone" name="phone">
+            </div>
+            <div class="input">
+                <input type="text" placeholder="Email" id="email" name="email">
+            </div>
+            <div class="input">
+                <input type="text" placeholder="Asunto a tratar" id="subject" name="subject">
+            </div>
+            <div class="input">
+                <textarea placeholder="Escribe tus comentarios..." id="message" name="message"></textarea>
+            </div>
+            <div class="btn">
+                <input type="submit" name="send" id="send">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

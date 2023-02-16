@@ -29,12 +29,13 @@ const preguntas=[
 const   $d=document,
         $contenedor=$d.querySelector("#test"),
         $pregunta=$d.querySelector("#pregunta"),
-        // $respuesta=$d.querySelectorAll(".respuesta"),
         $ul=$d.querySelector("ul"),
         $id=$d.querySelector("#submit"),
-        $template=$d.querySelector("#template-final").content,
+        $final=$d.querySelector("#final"),
+        //$template=$d.querySelector("#template-final").content,
         $temResp=$d.querySelector("#template-respuesta").content
 
+let $repetir=$d.querySelector("#repite")
 let prActual=0,
     suma=0
 
@@ -57,30 +58,23 @@ function render(pregunta){
 }
 
 function finRender(){
-    $contenedor.innerHTML=""
-    /* let a=$d.createElement("h2")
-    // a.innerHTML="hola"
-    let texto="Has acertado "+suma+"/"+preguntas.length+" preguntas correctamente"
-    a.append(texto)
-    let b=$d.createElement("button")
+    $final.removeAttribute("hidden")
+    $contenedor.setAttribute("hidden",true)
     
-    b.append("Repetir !!")
-    $contenedor.append(a,b) */
-    const $clone=$template.cloneNode(true)
     let texto="Has acertado "+suma+"/"+preguntas.length+" preguntas correctamente"
-    let h2=$clone.querySelector("h2")
-
-    h2.textContent=texto
-    
-    $contenedor.appendChild($clone)
+    const $solucion=$d.querySelector("#solucion")
+    $solucion.innerHTML=""
+    $solucion.append(texto)
 }
 
 $d.addEventListener("DOMContentLoaded",e=>{
+    
     render(preguntas[0])
 })
 
 $id.addEventListener("click",e=>{
     e.preventDefault()
+    
     const $respuesta=$d.querySelectorAll(".respuesta")
     $respuesta.forEach((element,indice) => {
         if(element.checked){
@@ -91,18 +85,23 @@ $id.addEventListener("click",e=>{
             if(prActual<preguntas.length){
                 render(preguntas[prActual])
             }else{
-                finRender()
+                //finRender()
+                location.reload()
             }  
         }
-    });
+    })
+
 })
 
-const $repetir=$d.querySelector("#repite")
+
 
 $repetir.addEventListener("click",e=>{
     e.preventDefault()
+    console.log(e)
     prActual=0,
     suma=0
+    $contenedor.removeAttribute("hidden")
+    $final.setAttribute("hidden",true)
     render(preguntas[0])
 })
 

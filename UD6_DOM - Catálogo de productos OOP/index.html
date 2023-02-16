@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ed">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Catálogo de Productos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <link rel="stylesheet" href="styles/mystyles.css" />
+    <script src="scripts/myscript.js" type="module" defer></script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Catálogo de Productos</a>
+    </nav>
+    <div class="container">
+      <div class="row pt-5">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header">
+              <h4>Añade un producto al catálogo</h4>
+            </div>
+            <form id="product-form" class="card-body">
+              <div class="form-group">
+                <input type="text" id="producto" placeholder="Nombre del producto" class="form-control" />
+              </div>
+              <div class="form-group">
+                <input type="number" id="precio" step="0.01" placeholder="Precio del producto" class="form-control" />
+              </div>
+              <div class="form-group">
+                <input type="number" id="ano" min="1900" max="2099" step="1" value="2018" class="form-control" />
+              </div>
+              <input type="submit" value="Añadir" class="btn btn-primary btn-block" />
+            </form>
+          </div>
+        </div>
+        <div id="product-list" class="col-md-8"></div>
+      </div>
+    </div>
+      <template id="template-producto">
+      <div>
+        <div class="card text-center mb-4">
+          <div class="card-body">
+              <strong>Producto</strong>: <span class="nome">Nombre</span> -
+              <strong>Precio</strong>: <span class="precio">Precio</span> - 
+              <strong>Año</strong>: <span class="ano">Año</span>
+              <a href="#" class="btn btn-danger" name="delete">Delete</a>
+          </div>
+      </div>
+      </div>
+    </template>
+  </body>
+</html>
