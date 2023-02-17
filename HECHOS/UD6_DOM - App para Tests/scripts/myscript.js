@@ -58,13 +58,13 @@ function render(pregunta){
 }
 
 function finRender(){
-    $final.removeAttribute("hidden")
-    $contenedor.setAttribute("hidden",true)
-    
+    $pregunta.innerHTML=""
     let texto="Has acertado "+suma+"/"+preguntas.length+" preguntas correctamente"
-    const $solucion=$d.querySelector("#solucion")
-    $solucion.innerHTML=""
-    $solucion.append(texto)
+    $pregunta.append(texto)
+    const $ul=$d.querySelector("ul")
+    $ul.innerHTML=""
+    $id.innerHTML=""
+    $id.append("Repetir !!!")
 }
 
 $d.addEventListener("DOMContentLoaded",e=>{
@@ -74,7 +74,11 @@ $d.addEventListener("DOMContentLoaded",e=>{
 
 $id.addEventListener("click",e=>{
     e.preventDefault()
-    
+    if (e.target.textContent.includes("!")){
+        prActual=0,
+        suma=0
+        location.reload()
+    }
     const $respuesta=$d.querySelectorAll(".respuesta")
     $respuesta.forEach((element,indice) => {
         if(element.checked){
@@ -85,8 +89,7 @@ $id.addEventListener("click",e=>{
             if(prActual<preguntas.length){
                 render(preguntas[prActual])
             }else{
-                //finRender()
-                location.reload()
+                finRender()  
             }  
         }
     })
@@ -94,14 +97,4 @@ $id.addEventListener("click",e=>{
 })
 
 
-
-$repetir.addEventListener("click",e=>{
-    e.preventDefault()
-    console.log(e)
-    prActual=0,
-    suma=0
-    $contenedor.removeAttribute("hidden")
-    $final.setAttribute("hidden",true)
-    render(preguntas[0])
-})
 
