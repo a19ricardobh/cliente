@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="scripts/myscript02_sincrono_bloqueante.js"></script>
+    <title>Asincronía</title>
+</head>
+<body>
+
+<!--     
+    <script>
+        function doble(num) {
+            setTimeout(()=>console.log(`Doble ${num}:${2*num}`),Math.random()*2000)
+        }
+
+        doble(4)
+        doble(2)
+        
+    </script>  
+-->   
+
+<!--  
+    <script>
+        function doble(num, callback) {
+            setTimeout(()=>callback(num,2*num),Math.random()*2000)
+        }
+        
+        doble(4,(num,resultado)=>{
+            console.log(`Doble ${num}:${resultado}`)
+            doble(2,(num,resultado)=>{
+                console.log(`Doble ${num}:${resultado}`)
+            })
+        })
+    </script>  
+-->   
+
+    <!-- Promesas -->
+<!--  
+    <script>
+        function doble(num) {
+           return new Promise((resolve,reject)=>{
+              setTimeout(()=>resolve({
+                  num,
+                  resultado: 2*num
+              }),Math.random()*2000)
+          })
+        }
+        
+       doble(4)
+       .then(obj=>{
+          console.log(`Doble ${obj.num}:${obj.resultado}`)
+          return doble(2)
+       })
+       .then(obj=>{
+          console.log(`Doble ${obj.num}:${obj.resultado}`)
+       })
+    </script>  
+-->       
+</body>
+</html>
