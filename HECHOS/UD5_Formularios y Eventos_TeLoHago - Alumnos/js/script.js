@@ -104,8 +104,11 @@ $formulario.addEventListener("submit",e=>{
     const expRegTlf=/^[0-9]{3}-[0-9]{3}-[0-9]{3}$/
     //console.log(expRegTlf.test($tlf.value))
     const expRegNom=/[a-z][ ]/i
-    console.log(expRegNom.test($name.value))
+    //console.log(expRegNom.test($name.value))
     if (expRegNif.test($nif.value) && expRegTlf.test($tlf.value) && expRegNom.test($name.value)){
         alert("// se envían los datos.")
+    }else{
+        alert("El formulario no tiene ")
     }
+
 })

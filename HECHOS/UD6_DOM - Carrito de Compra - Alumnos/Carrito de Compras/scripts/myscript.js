@@ -47,21 +47,11 @@ const $d=document,
       $tProdCarrito=$d.querySelector("#template-producto-carrito").content,
       $tProdFooter=$d.querySelector("#template-footer-carrito").content
 
-productos.forEach(element => {
-    let $clon = $tProducto.cloneNode(true)
-    const $nombre=$clon.querySelector("h5")
-    $nombre.innerHTML = element.title
-    const $precio=$clon.querySelector("p")
-    $precio.innerHTML = element.precio+" Eur" 
-    const $img=$clon.querySelector("img")
-    $img.setAttribute("src",element.thumbnailUrl)
-    const $a=$clon.querySelector("a")
-    $a.dataset.productoId=element.id
-    $lista.append($clon)
-});
+
 
 function renderCarrito(){
     localStorage.setItem("carrito", JSON.stringify(carrito));
+    //sessionStorage
     document.querySelector("tbody").innerHTML=""
     document.querySelector("tfoot").innerHTML=""
     if (carrito.length==0){
@@ -71,6 +61,7 @@ function renderCarrito(){
         let sumaC=0
         let sumaP=0
         carrito.forEach((producto,indice) => {
+            //console.log(producto)
             const $clon=$tProdCarrito.cloneNode(true)
             const tds=$clon.querySelectorAll("td")
             tds[0].textContent=indice+1
@@ -92,6 +83,22 @@ function renderCarrito(){
     }
 }
 
+//comienza el codigo de ejecucion.
+//listar los productos
+productos.forEach(element => {
+    let $clon = $tProducto.cloneNode(true)
+    const $nombre=$clon.querySelector("h5")
+    $nombre.innerHTML = element.title
+    const $precio=$clon.querySelector("p")
+    $precio.innerHTML = element.precio+" Eur" 
+    const $img=$clon.querySelector("img")
+    $img.setAttribute("src",element.thumbnailUrl)
+    const $a=$clon.querySelector("a")
+    $a.dataset.productoId=element.id
+    $lista.appendChild($clon)
+});
+
+//cuando se pulsa un boton de la lista de productos, se añade al carrito
 $lista.addEventListener("click",e=>{
     e.preventDefault()
     if (e.target.dataset.productoId!=null) {
@@ -109,6 +116,7 @@ $lista.addEventListener("click",e=>{
     }
 })
 
+//si se pulsa el boton de + o - dentro del carrito, se actualizan los datos del carrito
 $tabla.addEventListener("click", e=>{
     e.preventDefault()
     //console.log(e.target.classList.contains("btn"))
@@ -127,6 +135,7 @@ $tabla.addEventListener("click", e=>{
     }
 })
 
+//si se pulsa el boton de vaciar carrito se vacia el array
 $pie.addEventListener("click", e=>{
     e.preventDefault()
     if (e.target.id=="vaciar-carrito"){
