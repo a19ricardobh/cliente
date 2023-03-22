@@ -1,0 +1,37 @@
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="css/style.css">
+  <script src="script/my_script.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1>Gestión de parking</h1>
+  </header>
+  <section class="info">
+    <h3>Tienes <b>19</b> plazas de parking libres</h3>
+    <p id="pago"></p>
+    <form action="#">
+      <label for="matricula">Matrícula: </label>
+      <input type="text" id="matricula" class="requerido" />
+      <button>Agregar</button>
+    </form>
+  </section>
+
+  <table></table>
+
+  <template id="template-col">
+    <td data-number="#">
+      <!--
+        🚗
+        <small>Matricula<small>
+        <small>HH:MM<small>
+        <button>Eliminar<button>
+      -->
+    </td>
+  </template>
+</body>
+
+</html>

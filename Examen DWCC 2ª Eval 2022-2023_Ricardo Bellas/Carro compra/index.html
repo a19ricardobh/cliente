@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="scripts/my_script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Mi Carro</h1>
+    </header>
+    <div class="contenedor">
+        <div class="fila">
+
+            <main id="productos" class="col-3 fila"></main>
+
+            <aside class="carrito">
+                <h2>Carrito</h2>
+                <ul id="carrito" class="lista-carrito"></ul>
+                <hr>
+                <p class="total">Total: <span id="total"></span>&euro;</p>
+                <button id="boton-vaciar" class="btn btn-del">Vaciar</button>
+            </aside>
+        </div>
+    </div>
+    <template id="template-producto">
+        <div class="fichaProducto carrito">
+            <div class="producto">
+                <h5 class="fichaProductoNombre"></h5>
+                <img src="#" alt="#">
+                <p class="fichaProductoPrecio"></p>
+                <button class="btn btn-add">+</button>
+            </div>
+        </div>
+    </template>
+    <template id="template-producto-carrito">
+        <li class="lista-carrito-producto total">
+            <!-- nProductos x nombreProducto - PrecioTotal € -->
+            <button class="btn btn-del">X</button>
+        </li>
+    </template>
+</body>
+
+</html>
