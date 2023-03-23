@@ -65,7 +65,11 @@ form input:hover {
   background-color: rgba(171, 171, 247, 0.469);
   font-weight: 500;
 }
-
+table{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 td {
   border: solid 1px lightgray;
   padding: 2rem;
