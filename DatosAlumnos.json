@@ -1,0 +1,16 @@
+{
+  "datosAlumnos": [
+    {
+      "nif": "11111111-H",
+      "nombre": "ana",
+      "direccion": "Calle de Teo,24",
+      "sexo": "H",
+      "fnac": "1972-05-17",
+      "estudios": "2",
+      "telefono": "985225566",
+      "email": "mail@mail.es",
+      "aficiones": "Deporte",
+      "id": 1
+    }
+  ]
+}
