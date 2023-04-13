@@ -101,7 +101,6 @@ function addRegistro() {
         data:registro
     })
     //registros.push(registro)
-    sessionStorage.setItem("registros",JSON.stringify(registros))
 
     enableCtl(true)
 }
@@ -138,35 +137,41 @@ function actualiceRegistro() {
 function renderRegistros() {
     tbody.innerHTML=""
     const templateFila=document.querySelector("#template-fila").content
-    registros.forEach(registro=>{
-        fila=templateFila.cloneNode(true)
-        datos=fila.querySelectorAll("td")
-        datos[0].textContent=registro.nif
-        datos[1].textContent=registro.nombre
-        datos[2].textContent=registro.sexo
-        datos[3].textContent=registro.direccion
-        datos[4].textContent=registro.fnac
-        switch (registro.estudios) {
-            case "0":datos[5].textContent="Sin estudios"
-                     break
-            case "1":datos[5].textContent="ESO"
-                     break
-            case "2":datos[5].textContent="Bachillerato"
-                     break
-            case "3":datos[5].textContent="CM FP"
-                     break
-            case "4":datos[5].textContent="CS FP"
-                     break
-            case "5":datos[5].textContent="Universidad"
-        }
-        datos[6].textContent=registro.telefono
-        datos[7].textContent=registro.email
-        datos[8].textContent=registro.aficiones
-        datos[9].querySelector("a").dataset.id=registro.nif
-        tbody.appendChild(fila)
-    })
-    const nRegistros=document.querySelector("tfoot tr th:last-child")
-    nRegistros.textContent=registros.length
+    ajax({url:"http://localhost:3000/datosAlumnos",
+    method:"GET",
+    fsuccess:(alumnos)=>{
+        alumnos.forEach(registro=>{
+            fila=templateFila.cloneNode(true)
+            datos=fila.querySelectorAll("td")
+            datos[0].textContent=registro.nif
+            datos[1].textContent=registro.nombre
+            datos[2].textContent=registro.sexo
+            datos[3].textContent=registro.direccion
+            datos[4].textContent=registro.fnac
+            switch (registro.estudios) {
+                case "0":datos[5].textContent="Sin estudios"
+                         break
+                case "1":datos[5].textContent="ESO"
+                         break
+                case "2":datos[5].textContent="Bachillerato"
+                         break
+                case "3":datos[5].textContent="CM FP"
+                         break
+                case "4":datos[5].textContent="CS FP"
+                         break
+                case "5":datos[5].textContent="Universidad"
+            }
+            datos[6].textContent=registro.telefono
+            datos[7].textContent=registro.email
+            datos[8].textContent=registro.aficiones
+            datos[9].querySelector("a").dataset.id=registro.id
+            tbody.appendChild(fila)
+        })
+        const nRegistros=document.querySelector("tfoot tr th:last-child")
+        nRegistros.textContent=alumnos.length
+    },
+    ferror:(error)=>{error.status,error.statusText}
+    }) 
 }
 
 function checkNIF(){
@@ -194,7 +199,19 @@ function comprobar() {
 formulario.addEventListener("submit",e=>{
     e.preventDefault()
     if (comprobar()){
-        const coincidencia=registros.find(registro=>registro.nif==nifCtl.value)
+        const coincidencia=false
+        ajax({url:"http://localhost:3000/datosAlumnos/",
+            method:"GET",
+            fsuccess:(alumnos)=>{
+                alumnos.forEach(registro=>{
+                    if(registro.nif==nifCtl.value){
+                        coincidencia=true
+                    }
+                })
+            },
+            ferror:(error)=>{error.status,error.statusText}
+        }) 
+        
         if (coincidencia) {
             nifCtl.disabled=true
             actualiceRegistro()
@@ -240,20 +257,23 @@ function inicializarFormulario(permitir){
 
 tbody.addEventListener("click",e=>{
     e.preventDefault()
-    if (e.target.textContent=="X") {
-        registros.splice(registros.findIndex(registro=>registro.nif==e.target.dataset.id),1)
-        sessionStorage.setItem("registros",JSON.stringify(registros))
-        renderRegistros()  
-        formulario.reset()
-        inicializarFormulario(true)
+    console.log(e)
+    if (e.target.textContent=="X") { 
+        //borra registro en json
+        ajax({url:`http://localhost:3000/datosAlumnos/${e.target.dataset.id}`,
+        method:"DELETE",
+        fsuccess:(res)=>{
+            renderRegistros()  
+            formulario.reset()
+            inicializarFormulario(true)
+        },
+        ferror:(error)=>{console.log(error.status),error.statusText}
+        
+        })
     }
 })
 
 document.addEventListener("DOMContentLoaded",e=>{
-    registrosSession=sessionStorage.getItem("registros")
-    if (registrosSession) {
-        registros=JSON.parse(registrosSession)
-        renderRegistros()
-    }
+    renderRegistros()   
     inicializarFormulario(true)
 })
