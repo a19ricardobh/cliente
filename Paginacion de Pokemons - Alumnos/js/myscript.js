@@ -12,7 +12,7 @@ async function cargarPokemons(url){
             $template="",
             $prevLink,
             $nextLink
-            //console.log(json)
+            console.log(json)
 
             if (!res.ok) throw {status:res.status,statusText:res.statusText}
             for (i=0;i<json.results.length;i++){

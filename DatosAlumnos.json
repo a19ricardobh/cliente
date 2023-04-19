@@ -1,16 +1,40 @@
 {
   "datosAlumnos": [
     {
+      "nif": "87999999-C",
+      "nombre": "Ana Mortelo",
+      "direccion": "Calle nueva, 1",
+      "sexo": "M",
+      "fnac": "2002-02-17",
+      "estudios": "0",
+      "telefono": "985288895",
+      "email": "oooooil@mail.es",
+      "aficiones": "Lectura;comer bien",
+      "id": 3
+    },
+    {
       "nif": "11111111-H",
-      "nombre": "ana",
+      "nombre": "jose",
+      "direccion": "Calle de Teo,24",
+      "sexo": "M",
+      "fnac": "1980-05-12",
+      "estudios": "3",
+      "telefono": "985225599",
+      "email": "mail@mail.es",
+      "aficiones": "Cine",
+      "id": 4
+    },
+    {
+      "nif": "11111111-H",
+      "nombre": "jose",
       "direccion": "Calle de Teo,24",
       "sexo": "H",
-      "fnac": "1972-05-17",
-      "estudios": "2",
-      "telefono": "985225566",
+      "fnac": "1980-05-12",
+      "estudios": "0",
+      "telefono": "985225599",
       "email": "mail@mail.es",
-      "aficiones": "Deporte",
-      "id": 1
+      "aficiones": "Cine",
+      "id": 5
     }
   ]
 }

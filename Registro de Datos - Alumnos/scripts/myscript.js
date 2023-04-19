@@ -64,6 +64,7 @@ function rellenarDatosFormulario(registro){
             }
         })
     }
+    btnAdd.dataset.id=registro.id
 }
 
 function addRegistro() {
@@ -105,8 +106,8 @@ function addRegistro() {
     enableCtl(true)
 }
 
-function actualiceRegistro() {
-    coincidencia=registros.find(registro=>registro.nif==nifCtl.value)
+function actualiceRegistro(id) {
+    
     if (sexoCtl[0].checked)
         sexo="H"
     else
@@ -121,17 +122,28 @@ function actualiceRegistro() {
         aficiones.push("Deporte")
     if (otra.value)
         aficiones.push(otra.value)
+    const registro={
+        nif:nifCtl.value,
+        nombre:nombreCtl.value,
+        direccion:direccionCtl.value,
+        sexo,
+        fnac:fnacCtl.value,
+        estudios:selectCtl.value,
+        telefono:telefonoCtl.value,
+        email:emailCtl.value,
+        aficiones:aficiones.join(";")
+    }
 
-    coincidencia.nombre=nombreCtl.value
-    coincidencia.direccion=direccionCtl.value
-    coincidencia.sexo=sexo
-    coincidencia.fnac=fnacCtl.value
-    coincidencia.estudios=selectCtl.value
-    coincidencia.telefono=telefonoCtl.value
-    coincidencia.email=emailCtl.value;
-    coincidencia.aficiones=aficiones.join(";")
+    ajax({url:`http://localhost:3000/datosAlumnos/${id}`,
+        method:"PUT",
+        fsuccess:(res)=>{
+            formulario.reset()
+        },
+        ferror:(error)=>{alert("error actualice")},
+        data:registro
+    })
 
-    sessionStorage.setItem("registros",JSON.stringify(registros))
+    
 }
 
 function renderRegistros() {
@@ -176,7 +188,7 @@ function renderRegistros() {
 
 function checkNIF(){
     const expresion=/^[0-9]{8}\-[a-z,A-Z]{1}$/;
-    console.log(expresion.test(nifCtl.value))
+    //console.log(expresion.test(nifCtl.value))
     return nifCtl.value!=""&&expresion.test(nifCtl.value)
 }
 
@@ -198,23 +210,45 @@ function comprobar() {
 
 formulario.addEventListener("submit",e=>{
     e.preventDefault()
+    console.log(e)
     if (comprobar()){
-        const coincidencia=false
-        ajax({url:"http://localhost:3000/datosAlumnos/",
-            method:"GET",
-            fsuccess:(alumnos)=>{
-                alumnos.forEach(registro=>{
-                    if(registro.nif==nifCtl.value){
-                        coincidencia=true
-                    }
-                })
-            },
-            ferror:(error)=>{error.status,error.statusText}
-        }) 
-        
-        if (coincidencia) {
+        if (e.target.dataset.id){ //modifico
             nifCtl.disabled=true
-            actualiceRegistro()
+            actualiceRegistro(e.target.dataset.id)
+            renderRegistros()
+            formulario.reset()
+            inicializarFormulario(true)
+        }else{  //añado
+            addRegistro()
+            renderRegistros()    
+            formulario.reset()
+            inicializarFormulario(true)
+        }
+        
+    } else {
+        alert("Faltan datos por cubrir")
+    } 
+    /* let identificador=0
+    ajax({url:"http://localhost:3000/datosAlumnos/",
+        method:"GET",
+        fsuccess:(alumnos)=>{
+            
+            alumnos.forEach(registro=>{
+                
+                if(registro.nif==nifCtl.value){
+                
+                    
+                    identificador=registro.id
+                }
+            })
+        },
+        ferror:(error)=>{alert("error")}
+    }) 
+    if (comprobar()){
+        
+        if (identificador>0) {
+            nifCtl.disabled=true
+            actualiceRegistro(identificador)
             renderRegistros()
             formulario.reset()
             inicializarFormulario(true)
@@ -226,11 +260,11 @@ formulario.addEventListener("submit",e=>{
         }
     } else {
         alert("Faltan datos por cubrir")
-    }
+    } */
 })
 
 nifCtl.addEventListener("blur",evento=>{
-    if (checkNIF()) {
+    /* if (checkNIF()) {
         enableCtl(false)
         coincidencia=registros.find(registro=>registro.nif==nifCtl.value)
         if (coincidencia) {
@@ -239,6 +273,24 @@ nifCtl.addEventListener("blur",evento=>{
             enableCtl(false)
         } else
             inicializarFormulario()
+    } */
+    if (checkNIF()) {
+        enableCtl(false)
+        ajax({url:"http://localhost:3000/datosAlumnos",
+        method:"GET",
+        fsuccess:(alumnos)=>{
+            alumnos.forEach(registro=>{
+                if(registro.nif==nifCtl.value){
+                    alert("Se cargan los datos existentes")
+                    rellenarDatosFormulario(registro)
+                    enableCtl(false)
+                }
+            })
+            const nRegistros=document.querySelector("tfoot tr th:last-child")
+            nRegistros.textContent=alumnos.length
+        },
+        ferror:(error)=>{error.status,error.statusText}
+        }) 
     }
 })
 
@@ -257,7 +309,7 @@ function inicializarFormulario(permitir){
 
 tbody.addEventListener("click",e=>{
     e.preventDefault()
-    console.log(e)
+    //console.log(e)
     if (e.target.textContent=="X") { 
         //borra registro en json
         ajax({url:`http://localhost:3000/datosAlumnos/${e.target.dataset.id}`,
