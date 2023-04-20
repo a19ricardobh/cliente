@@ -13,7 +13,7 @@ const tbody=document.querySelector("tbody")
 
 const btnAdd=document.querySelector("button")
 
-let registros=[]
+//let registros=[]
 function ajax(params) {
     let {url,method,fsuccess,ferror,data}=params
     const opciones={
@@ -96,6 +96,7 @@ function addRegistro() {
     ajax({url:"http://localhost:3000/datosAlumnos",
         method:"POST",
         fsuccess:(res)=>{
+            location.reload()
             formulario.reset()
         },
         ferror:(error)=>{error.status,error.statusText},
@@ -137,6 +138,7 @@ function actualiceRegistro(id) {
     ajax({url:`http://localhost:3000/datosAlumnos/${id}`,
         method:"PUT",
         fsuccess:(res)=>{
+            location.reload()
             formulario.reset()
         },
         ferror:(error)=>{alert("error actualice")},
@@ -210,11 +212,10 @@ function comprobar() {
 
 formulario.addEventListener("submit",e=>{
     e.preventDefault()
-    console.log(e)
     if (comprobar()){
-        if (e.target.dataset.id){ //modifico
+        if (e.target.add.dataset.id){ //modifico
             nifCtl.disabled=true
-            actualiceRegistro(e.target.dataset.id)
+            actualiceRegistro(e.target.add.dataset.id)
             renderRegistros()
             formulario.reset()
             inicializarFormulario(true)
@@ -228,52 +229,11 @@ formulario.addEventListener("submit",e=>{
     } else {
         alert("Faltan datos por cubrir")
     } 
-    /* let identificador=0
-    ajax({url:"http://localhost:3000/datosAlumnos/",
-        method:"GET",
-        fsuccess:(alumnos)=>{
-            
-            alumnos.forEach(registro=>{
-                
-                if(registro.nif==nifCtl.value){
-                
-                    
-                    identificador=registro.id
-                }
-            })
-        },
-        ferror:(error)=>{alert("error")}
-    }) 
-    if (comprobar()){
-        
-        if (identificador>0) {
-            nifCtl.disabled=true
-            actualiceRegistro(identificador)
-            renderRegistros()
-            formulario.reset()
-            inicializarFormulario(true)
-        } else {
-            addRegistro()
-            renderRegistros()    
-            formulario.reset()
-            inicializarFormulario(true)
-        }
-    } else {
-        alert("Faltan datos por cubrir")
-    } */
+    
 })
 
 nifCtl.addEventListener("blur",evento=>{
-    /* if (checkNIF()) {
-        enableCtl(false)
-        coincidencia=registros.find(registro=>registro.nif==nifCtl.value)
-        if (coincidencia) {
-            alert("Se cargan los datos existentes")
-            rellenarDatosFormulario(coincidencia)
-            enableCtl(false)
-        } else
-            inicializarFormulario()
-    } */
+    
     if (checkNIF()) {
         enableCtl(false)
         ajax({url:"http://localhost:3000/datosAlumnos",
