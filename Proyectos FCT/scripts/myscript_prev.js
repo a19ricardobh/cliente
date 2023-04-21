@@ -1,7 +1,7 @@
 const   $d=document,
         $select=$d.querySelector("#ciclos"),
         $main=$d.querySelector("main"),
-        //inicio=$d.querySelector("#inicio"),
+        inicio=$d.querySelector("#inicio"),
         $tCabecera=$d.querySelector("#template-listado-datos").content,
         $tDatos=$d.querySelector("#template-body-datos").content,
         $tItem=$d.querySelector("#template-item").content
@@ -30,7 +30,8 @@ function rellenarDatosAlumnos(ciclo){
                     alumnos.push(alumno)
                 }
             })
-            
+            /* let clon=$tCabecera.cloneNode(true)
+            $main.appendChild(clon) */
             renderAlumnos(alumnos)
         },
         ferror:(error)=>{error.status,alert(error.statusText)}
@@ -39,29 +40,18 @@ function rellenarDatosAlumnos(ciclo){
 }
 
 function renderAlumnos(alumnos) {
-    //console.log(alumnos)
-    let cabecera=$d.querySelector("#listado-datos")
-    if(!cabecera){
-        inicio=$tCabecera.cloneNode(true)
-        $main.appendChild(inicio)
-        cabecera=$d.querySelector("#listado-datos")
-    }
-    cabecera.innerHTML=""
-    //creacion del id listado-datos
+    console.log(alumnos)
+    inicio.innerHTML=""
     let clon=$tCabecera.cloneNode(true)
-    let head=clon.querySelector("#listado-datos")
-
-    //creacion del id body-datos
-    let clon2=$tDatos.cloneNode(true)
-    let body=clon2.querySelector("#body-datos")
     
-    //selecciona id items
+    //let main=$d.querySelector("#listado-datos")
+    
+    let clon2=$tDatos.cloneNode(true)
     let item=clon2.querySelector("#td-body")
-
-    //selecciona id del pie
-    let pie=clon2.querySelector("#td-pie")
-
-    //creacion del class item y añado al body-datos
+    /* let clon3=$tItem.cloneNode(true)
+    let p=clon3.querySelector("p")
+    let change=clon3.querySelector(".fa-undo-alt")
+    let del=clon3.querySelector(".fa-trash") */
     alumnos.forEach(e => {
         let clon3=$tItem.cloneNode(true)
         let p=clon3.querySelector("p")
@@ -71,14 +61,13 @@ function renderAlumnos(alumnos) {
         del.dataset.id=e.id
         p.append(e.nombre)
         item.appendChild(clon3)
+        //clon2.appendChild(item)
     })
-    //añade los items y el pie al body
-    body.appendChild(item)
-    body.appendChild(pie)
-    //añade el body-datos al listado-datos
-    head.appendChild(body)
-    //reemplaza el elemento en main
-    $main.replaceChild(head,cabecera)
+    //item.appendChild(clon3)
+    clon2.appendChild(item)
+    main.appendChild(clon2)
+    clon.appendChild(main)
+    inicio.appendChild(clon)
 }
 
 document.addEventListener("DOMContentLoaded",e=>{
