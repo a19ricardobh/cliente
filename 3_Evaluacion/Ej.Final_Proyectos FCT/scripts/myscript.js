@@ -1,10 +1,11 @@
 const   $d=document,
         $select=$d.querySelector("#ciclos"),
         $main=$d.querySelector("main"),
-        //inicio=$d.querySelector("#inicio"),
+        $form=$d.querySelector("#form-ciclos"),
         $tCabecera=$d.querySelector("#template-listado-datos").content,
         $tDatos=$d.querySelector("#template-body-datos").content,
         $tItem=$d.querySelector("#template-item").content
+let ciclo2=""
 
 function ajax(params) {
     let {url,method,fsuccess,ferror,data}=params
@@ -20,12 +21,13 @@ function ajax(params) {
 }
 
 function rellenarDatosAlumnos(ciclo){
-    ajax({url:"http://localhost:3000/db",
+    ajax({
+        url:"http://localhost:3000/alumnos",
         method:"GET",
         fsuccess:(datos)=>{
             //console.log(datos.alumnos)
             let alumnos=[]
-            datos.alumnos.forEach(alumno=>{
+            datos.forEach(alumno=>{
                 if (alumno.ciclo==ciclo){
                     alumnos.push(alumno)
                 }
@@ -37,6 +39,19 @@ function rellenarDatosAlumnos(ciclo){
     })
     
 }
+
+function borrarAlumnos(id){
+    ajax({url:`http://localhost:3000/alumnos/${id}`,
+        method:"DELETE",
+        fsuccess:(datos)=>{
+           //alert("registro borrado")
+           rellenarDatosAlumnos(ciclo2)
+        },
+        ferror:(error)=>{error.status,alert(error.statusText)}
+    })
+    
+}
+
 
 function renderAlumnos(alumnos) {
     //console.log(alumnos)
@@ -79,6 +94,17 @@ function renderAlumnos(alumnos) {
     head.appendChild(body)
     //reemplaza el elemento en main
     $main.replaceChild(head,cabecera)
+    //borrado
+    body.addEventListener("click",e=>{
+        e.preventDefault()
+        //e.stopPropagation()
+        $form.ciclos.disabled=true 
+        //console.log(e.target.classList)
+        if (e.target.classList.contains("fa-trash")){
+            //console.log(e.target.dataset.id)
+            borrarAlumnos(e.target.dataset.id)
+        }
+    })
 }
 
 document.addEventListener("DOMContentLoaded",e=>{
@@ -86,6 +112,7 @@ document.addEventListener("DOMContentLoaded",e=>{
         method:"GET",
         fsuccess:(datos)=>{
             const inicial=$d.createElement("option")
+            console.log("recarga")
             inicial.setAttribute("value",0)
             inicial.append("Elige un ciclo.........")
             $select.appendChild(inicial)
@@ -106,6 +133,8 @@ $select.addEventListener("change",e=>{
     if (e.target.value==0){
         alert("Selecciona un ciclo válido")
     }else{
+        ciclo2=e.target.value
         rellenarDatosAlumnos(e.target.value)
     }
 })
+
