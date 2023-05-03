@@ -160,6 +160,15 @@
       "privincia": "Lugo",
       "email": "mail@mail.es",
       "id": 7
+    },
+    {
+      "nombre": "ana",
+      "apellidos": "Posadas Gil",
+      "domicilio": "Calle",
+      "poblacion": "Lugo",
+      "privincia": "Lugo",
+      "email": "mail@mail.es",
+      "id": 8
     }
   ],
   "prestamos": [
