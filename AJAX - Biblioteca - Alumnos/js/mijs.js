@@ -1,6 +1,8 @@
 const $d=document,
     $form=$d.querySelector("form"),
+    form=["nombre","apellidos","domicilio","poblacion","provincia","email"],
     nifCtl=$form.nif,
+    $input=$d.querySelector("#enviar"),
     $tTabla=$d.querySelector("#template-tabla").content,
     $tFila=$d.querySelector("#template-row").content
 
@@ -38,8 +40,17 @@ function rellenarFormulario(socio){
     $form.querySelectorAll("fieldset")[1].appendChild(boton)
     boton.addEventListener("click",e=>{
         e.preventDefault()
-        console.log(socio.id)
-        mostrarLibros(socio.id)
+        //console.log(e.target.classList.contains("oculto"))
+        if (e.target.classList.contains("oculto")){
+            mostrarLibros(socio.id)
+            boton.setAttribute("class","visible")
+            boton.innerHTML="Ocultar libros prestados"
+        }else{
+            $d.querySelector("table").remove()
+            boton.setAttribute("class","oculto")
+            boton.innerHTML="Mostrar libros prestados"
+        }
+        
 
     })
 }
@@ -59,15 +70,41 @@ function mostrarLibros(socio){
                 fila[3].textContent=el.libro.genero
                 fila[4].textContent=el.libro.paginas
                 fila[5].textContent=el.libro.fechEdicion
-                linea.appendChild(clon2)
+                filaCompleta=clon2.querySelector("tr")
+                linea.appendChild(filaCompleta)
             });
-            clon.appendChild(linea)
-            $form.querySelectorAll("fieldset")[1].appendChild(clon)
+            //console.log(linea)
+            let tabla=clon.querySelector("table")
+            tabla.appendChild(linea)
+            //console.log(clon)
+            $form.querySelectorAll("fieldset")[1].appendChild(tabla)
         },
         ferror:(error)=>{error.status,error.statusText}
         }) 
     
 
+}
+
+function altaSocio(){
+    ajax({
+        url: "http://localhost:3000/socios",
+        method: "POST",
+        fsuccess: (res) => {
+          $form.reset();
+          location.reload();
+          alert("Incluido con exito")
+        },
+        ferror: (err) =>
+          $form.insertAdjacentHTML("afterend", `<p><b>${err}</b></p>`),
+        data: {
+          nombre: $form.nombre.value,
+          apellidos: $form.apellidos.value,
+          domicilio:$form.domicilio.value,
+          poblacion:$form.poblacion.value,
+          privincia:$form.provincia.value,
+          email: $form.email.value,
+        },
+      });
 }
 
 //
@@ -85,9 +122,12 @@ nifCtl.addEventListener("blur",e=>{
                     //console.log(registro)
                     rellenarFormulario(registro)
                     //enableCtl(false)
+                    $input.setAttribute("value","Actualizar")
+
                 }
             })
             if (!existe){
+                $input.setAttribute("value","Alta")
                 //altaSocio()
             }
         },
@@ -96,3 +136,15 @@ nifCtl.addEventListener("blur",e=>{
     }
 })
 
+//evento submit
+$form.addEventListener("submit",e=>{
+    e.preventDefault()
+    //console.log(e.submitter.value)
+    if (e.submitter.value=="Alta"){        
+        if (form.every(name=>$form[name].value!=""))
+            altaSocio()
+    }
+    if (e.submitter.value=="Actualizar"){
+
+    }
+})

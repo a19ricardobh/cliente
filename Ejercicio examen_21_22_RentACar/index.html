@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Akaya Kanadaka">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Flota de Vehículos</title>
+</head>
+<body>
+    <form name="formulario">
+        <h1>Rent A Car</h1>
+        <fieldset>          
+          <legend>Consulta Datos</legend>          
+          <p>
+            <label for="nif" class="cliente">NIF</label>
+            <input type="text" name="nif" id="nif" placeholder="NIF"  />
+          </p>
+        </fieldset>
+
+        <fieldset>
+            <legend>Datos del Cliente</legend>
+            <p>
+              <label for="nombre" class="cliente">Nombre </label>
+              <input type="text" name="nombre" id="nombre" placeholder="Nombre y Apellidos"  />
+            </p>
+            <p>
+              <label for="direccion" class="cliente">Direccion </label>
+              <input type="text" name="direccion" id="direccion" placeholder="Direccion del cliente"  />
+            </p>
+            <p>
+              <label for="poblacion" class="cliente">Poblacion </label>
+              <input type="text" name="poblacion" id="poblacion" placeholder="Poblacion"  />
+            </p>
+            <p>
+              <label for="provincia" class="cliente">Provincia </label>
+              <input type="text" name="provincia" id="provincia" placeholder="Provincia"  />
+            </p>
+            <p>
+              <label for="cp" class="cliente">Codigo Postal</label>
+              <input type="text" name="cp" id="cp" placeholder="Codigo Postal"  />
+            </p>
+            <p>
+              <label for="telefono" class="cliente">Telefono</label>
+              <input type="text" name="telefono" id="telefono" placeholder="Telefono"  />
+            </p>
+        </fieldset>
+        <input type="submit" id="enviar" name="enviar" value="Dar de Alta"/>
+        </form>   
+        <template id="template-tablaDatos">
+            <table>
+                <thead>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tbody></tbody>
+                </thead>
+            </table>
+        </template>        
+        <template id="template-filaDatos">
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </template>
+        <script src="js/mijs-fetch.js"></script>
+</body>
+</html>
