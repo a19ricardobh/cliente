@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://* https://api.stripe.com; img-src 'self' https://www.google-analytics.com https://*.stripe.com;font-src 'self' http://fonts.gstatic.com;frame-src https://js.stripe.com https://hooks.stripe.com https://checkout.stripe.com;script-src 'self' 'unsafe-inline' https://* https://js.stripe.com https://checkout.stripe.com https://www.google-analytics.com;connect-src 'self' https://api.stripe.com https://checkout.stripe.com;"> -->
+    <link rel="stylesheet" href="css/mystyles.css">
+    <title>Checkout con Stripe</title>
+</head>
+<body>
+    <h1>Checkout con Stripe</h1>
+    <section id="tacos" class="tacos"></section>
+    <template id="taco-template">
+      <figure class="taco">
+        <img>
+        <figcaption></figcaption>
+      </figure>
+    </template>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="js/stripe-checkout.js" type="module"></script>
+</body>
+</html>

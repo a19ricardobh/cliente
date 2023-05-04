@@ -97,7 +97,7 @@ function altaSocio(){
         ferror: (err) =>
           $form.insertAdjacentHTML("afterend", `<p><b>${err}</b></p>`),
         data: {
-        nif:,
+          nif: $form.nombre.value,
           nombre: $form.nombre.value,
           apellidos: $form.apellidos.value,
           domicilio:$form.domicilio.value,
