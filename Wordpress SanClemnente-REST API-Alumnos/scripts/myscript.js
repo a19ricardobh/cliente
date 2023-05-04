@@ -31,8 +31,20 @@ function getSiteData(){
     .catch(error=>{})
 }
 
+function getPosts() {
+    $loader.style.display="block"
+    fetch(`${POSTS}&page=${page}&per_page=${perPage}`)
+    .then(resp=>resp.ok?resp.json():Promise.reject(resp))
+    .then(json=>{
+        console.log(json)
+    })
+    .catch(error=>{
+        console.log(error)
+    })
+}
+
 $d.addEventListener("DOMContentLoaded",e=>{
     getSiteData()
-    //getPosts()
+    getPosts()
 })
 
