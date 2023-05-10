@@ -97,13 +97,36 @@ function altaSocio(){
         ferror: (err) =>
           $form.insertAdjacentHTML("afterend", `<p><b>${err}</b></p>`),
         data: {
-          nif: $form.nombre.value,
+          nif: $form.nif.value,
           nombre: $form.nombre.value,
           apellidos: $form.apellidos.value,
           domicilio:$form.domicilio.value,
           poblacion:$form.poblacion.value,
           provincia:$form.provincia.value,
           email: $form.email.value,
+        },
+      });
+}
+
+function modificaSocio(socio){
+    ajax({
+        url: `http://localhost:3000/socios/${socio.nif.dataset.id}`,
+        method: "PUT",
+        fsuccess: (res) => {
+          $form.reset();
+          location.reload();
+          alert("Modificado registro")
+        },
+        ferror: (err) =>
+          $form.insertAdjacentHTML("afterend", `<p><b>${err}</b></p>`),
+        data: {
+          nif: socio.nif.value,
+          nombre: socio.nombre.value,
+          apellidos: socio.apellidos.value,
+          domicilio: socio.domicilio.value,
+          poblacion: socio.poblacion.value,
+          provincia: socio.provincia.value,
+          email: socio.email.value,
         },
       });
 }
@@ -146,6 +169,6 @@ $form.addEventListener("submit",e=>{
             altaSocio()
     }
     if (e.submitter.value=="Actualizar"){
-
+ 	    modificaSocio(e.target.elements)
     }
 })
