@@ -36,7 +36,25 @@ function getPosts() {
     fetch(`${POSTS}&page=${page}&per_page=${perPage}`)
     .then(resp=>resp.ok?resp.json():Promise.reject(resp))
     .then(json=>{
-        console.log(json)
+        //console.log(json)
+        let categorias=""
+        let etiquetas=""
+        json._embedded["wp:term"][0].forEach(element=>{
+            categorias+=`<li>${element.name}</li>`
+        })
+        json._embedded["wp:term"][1].forEach(element=>{
+            etiquetas+=`<li>${element.name}</li>`
+        })
+        $template.querySelector(".post-image").src=json._embedded["wp:featuredmedia"]
+        $template.querySelector(".post-title").innerHTML=json.title.rendered
+        $template.querySelector(".post-author").innerHTML=`
+            <img src"${json._embedded.author[0].avatar_urls
+                ?json._embedded.author[0].avatar_urls["48"]
+                :""}
+                " alt=
+        `
+
+
     })
     .catch(error=>{
         console.log(error)
